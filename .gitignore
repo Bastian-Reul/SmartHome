@@ -1,0 +1,9 @@
+account*.h
+*.o
+*.d
+*.elf
+*.hex
+*.lss
+*.map
+*.srec
+*.eep
