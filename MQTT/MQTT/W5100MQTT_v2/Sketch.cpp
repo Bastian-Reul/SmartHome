@@ -12,7 +12,6 @@
 			// Update these with values suitable for your network.
 			byte mac[]    = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
 			IPAddress ip(HUB_IP);
-			//const char* server = "messtechnik.w-hs.de";
 			IPAddress server(MQTT_SERVERIP);
 			//IPAddress server(192, 168, 0, 2);
 			char mqtt_user[] = USERNAME;

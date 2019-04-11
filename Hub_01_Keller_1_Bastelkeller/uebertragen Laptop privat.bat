@@ -1,0 +1,2 @@
+start "Title" "C:\Program Files\arduino-nightly\hardware\tools\avr\bin\avrdude.exe" -C "C:\Program Files\arduino-nightly\hardware\tools\avr\etc\avrdude.conf" -v -patmega328p -carduino -PCOM6 -b115200 -D -Uflash:w:"C:\Users\Bastian Reul\Documents\GitHub\SmartHome\Hub_01_Keller_1_Bastelkeller\Hub_01_Keller_1_Bastelkeller\Hub_Muster\Debug\Hub_Muster.hex":i
+pause
