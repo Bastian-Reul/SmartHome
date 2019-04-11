@@ -17,7 +17,7 @@
 #define MCP2515_DEFAULT_CS_PIN          3	//3
 #define MCP2515_DEFAULT_INT_PIN         7	//7
 #else
-#define MCP2515_DEFAULT_CS_PIN          3	//Vorher war 10, gibt aber Probleme mit dem Ethernet Shield
+#define MCP2515_DEFAULT_CS_PIN          10	//Vorher war 10, gibt aber Probleme mit dem Ethernet Shield
 #define MCP2515_DEFAULT_INT_PIN         2	//Vorher war 2, weiﬂ nicht ob das Probleme mit dem Ethernet Shield gibt
 #endif
 
