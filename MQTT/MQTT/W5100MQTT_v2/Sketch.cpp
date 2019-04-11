@@ -3,7 +3,7 @@
 #include <Ethernet.h>
 #include <PubSubClient.h>
 #include "CAN.h"
-#include "account_Buero.h"
+#include "account_Philipp.h"
 
 #define RELAIS_PIN 8
 //#define CAN_SCHIELD_SPI_CS 2 //Arduino Zählweise Pin 2 wird als CS Leitung benutzt
@@ -68,8 +68,8 @@ void setup()
 	mqttClient.setServer(server, 1883);
 	mqttClient.setCallback(callback);
 	Serial.println("MQTT initialisiert");
-	//Ethernet.begin(mac);
-	Ethernet.begin(mac, ip);
+	Ethernet.begin(mac); //IP Adresse per DHCP holen klappt bei Philipp
+	//Ethernet.begin(mac, ip);
 	Serial.println("Ethernet.begin()");
 	// Allow the hardware to sort itself out
 	delay(1500);
@@ -79,6 +79,7 @@ void setup()
 		      Serial.println("Starting CAN failed!");
 		      while (1);
 	      }*/
+	Serial.println(Ethernet.localIP());
 }
 
 void loop()

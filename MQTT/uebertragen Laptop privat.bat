@@ -1,0 +1,2 @@
+start "Title" "C:\Program Files\arduino-nightly\hardware\tools\avr\bin\avrdude.exe" -C "C:\Program Files\arduino-nightly\hardware\tools\avr\etc\avrdude.conf" -v -patmega328p -carduino -PCOM7 -b115200 -D -Uflash:w:"C:\Users\Bastian Reul\Documents\GitHub\SmartHome\MQTT\MQTT\W5100MQTT_v2\Debug\W5100MQTT_v2.hex":i
+pause
