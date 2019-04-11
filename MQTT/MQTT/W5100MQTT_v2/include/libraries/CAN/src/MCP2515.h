@@ -14,11 +14,11 @@
 
 #if defined(ARDUINO_ARCH_SAMD) && defined(PIN_SPI_MISO) && defined(PIN_SPI_MOSI) && defined(PIN_SPI_SCK) && (PIN_SPI_MISO == 10) && (PIN_SPI_MOSI == 8) && (PIN_SPI_SCK == 9)
 // Arduino MKR board: MKR CAN shield CS is pin 3, INT is pin 7
-#define MCP2515_DEFAULT_CS_PIN          2
-#define MCP2515_DEFAULT_INT_PIN         3//???ist das richtig?
+#define MCP2515_DEFAULT_CS_PIN          3	//3
+#define MCP2515_DEFAULT_INT_PIN         7	//7
 #else
-#define MCP2515_DEFAULT_CS_PIN          2
-#define MCP2515_DEFAULT_INT_PIN         3//???ist das richtig?
+#define MCP2515_DEFAULT_CS_PIN          10	//Vorher war 10, gibt aber Probleme mit dem Ethernet Shield
+#define MCP2515_DEFAULT_INT_PIN         2	//Vorher war 2, weiﬂ nicht ob das Probleme mit dem Ethernet Shield gibt
 #endif
 
 class MCP2515Class : public CANControllerClass {

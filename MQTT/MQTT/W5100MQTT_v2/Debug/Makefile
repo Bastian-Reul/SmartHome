@@ -33,6 +33,19 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
+../Debug/ \
+../Debug/include/ \
+../Debug/include/libraries/ \
+../Debug/include/libraries/CAN/ \
+../Debug/include/libraries/CAN/src/ \
+../Debug/include/libraries/SPI/ \
+../Debug/include/libraries/SPI/src/ \
+../Debug/src/ \
+../Debug/src/libraries/ \
+../Debug/src/libraries/CAN/ \
+../Debug/src/libraries/CAN/src/ \
+../Debug/src/libraries/SPI/ \
+../Debug/src/libraries/SPI/src/ \
 ../include/ \
 ../include/libraries/ \
 ../include/libraries/CAN/ \
@@ -49,11 +62,14 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../CANController.cpp \
 ../ESP32SJA1000.cpp \
-../MCP2515.cpp \
+../Hausbus.cpp \
+../Pin_ATMEGA328.cpp \
 ../Sketch.cpp \
-../src/libraries/SPI/src/SPI.cpp
+../src/libraries/CAN/src/CANController.cpp \
+../src/libraries/CAN/src/MCP2515.cpp \
+../src/libraries/SPI/src/SPI.cpp \
+../Taster.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -63,32 +79,44 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-CANController.o \
 ESP32SJA1000.o \
-MCP2515.o \
+Hausbus.o \
+Pin_ATMEGA328.o \
 Sketch.o \
-src/libraries/SPI/src/SPI.o
+src/libraries/CAN/src/CANController.o \
+src/libraries/CAN/src/MCP2515.o \
+src/libraries/SPI/src/SPI.o \
+Taster.o
 
 OBJS_AS_ARGS +=  \
-CANController.o \
 ESP32SJA1000.o \
-MCP2515.o \
+Hausbus.o \
+Pin_ATMEGA328.o \
 Sketch.o \
-src/libraries/SPI/src/SPI.o
+src/libraries/CAN/src/CANController.o \
+src/libraries/CAN/src/MCP2515.o \
+src/libraries/SPI/src/SPI.o \
+Taster.o
 
 C_DEPS +=  \
-CANController.d \
 ESP32SJA1000.d \
-MCP2515.d \
+Hausbus.d \
+Pin_ATMEGA328.d \
 Sketch.d \
-src/libraries/SPI/src/SPI.d
+src/libraries/CAN/src/CANController.d \
+src/libraries/CAN/src/MCP2515.d \
+src/libraries/SPI/src/SPI.d \
+Taster.d
 
 C_DEPS_AS_ARGS +=  \
-CANController.d \
 ESP32SJA1000.d \
-MCP2515.d \
+Hausbus.d \
+Pin_ATMEGA328.d \
 Sketch.d \
-src/libraries/SPI/src/SPI.d
+src/libraries/CAN/src/CANController.d \
+src/libraries/CAN/src/MCP2515.d \
+src/libraries/SPI/src/SPI.d \
+Taster.d
 
 OUTPUT_FILE_PATH +=W5100MQTT_v2.elf
 
@@ -116,17 +144,30 @@ LINKER_SCRIPT_DEP+=
 
 
 
+
+
+
+
+
+
 ./%.o: .././%.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\include"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\include" -I".." -I"../include/libraries/CAN/src"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+src/libraries/CAN/src/%.o: ../src/libraries/CAN/src/%.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\include" -I".." -I"../include/libraries/CAN/src"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 src/libraries/SPI/src/%.o: ../src/libraries/SPI/src/%.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\include"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\include" -I".." -I"../include/libraries/CAN/src"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
