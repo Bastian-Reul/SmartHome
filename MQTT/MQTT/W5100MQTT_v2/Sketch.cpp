@@ -5,6 +5,7 @@
 #include "CAN.h"
 #include "account_Buero.h"
 #include "Hausbus.h"
+#include "Pin_ATMEGA328.h"
 
 uint32_t CAN_Buffer[20];
 uint32_t CAN_UID_List[20] = {
@@ -43,8 +44,6 @@ uint32_t CAN_UID_List[20] = {
 			char mqtt_user[] = USERNAME;
 			char mqtt_password[] = PASSWORD;
 			
-			//Debugging
-			Pin DebuggingPin('C', 0, false);
 
 void callback(char* topic, byte* payload, unsigned int length) {
 	Serial.print("Message arrived [");
@@ -57,21 +56,17 @@ void callback(char* topic, byte* payload, unsigned int length) {
 	{
 		//wenn in Erdgeschoss/Wohnzimmer/Deckenlicht eine 1 steht, dann per CAN das Kommando für Licht einschalten senden
 		Serial.println("Licht wird angeschaltet");
-		DebuggingPin.setze_Status(true);
 		CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
 		CAN.write(Kommando_Licht_an);
 		CAN.endPacket();
-		DebuggingPin.setze_Status(false);
 	}
 	else
 	{
 		//wenn in Erdgeschoss/Wohnzimmer/Deckenlicht etwas anderes steht, dann per CAN das Kommando für Licht ausschalten senden
 		Serial.println("Licht wird ausgeschaltet");
-		DebuggingPin.setze_Status(true);
 		CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
 		CAN.write(Kommando_Licht_aus);
 		CAN.endPacket();		
-		DebuggingPin.setze_Status(false);
 	}
 	Serial.println();
 }
