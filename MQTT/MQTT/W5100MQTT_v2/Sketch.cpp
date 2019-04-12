@@ -3,7 +3,7 @@
 #include <Ethernet.h>
 #include <PubSubClient.h>
 #include "CAN.h"
-#include "account_Philipp.h"
+#include "account_Buero.h"
 #include "Hausbus.h"
 
 uint32_t CAN_Buffer[20];
@@ -42,6 +42,9 @@ uint32_t CAN_UID_List[20] = {
 			//IPAddress server(192, 168, 0, 2);
 			char mqtt_user[] = USERNAME;
 			char mqtt_password[] = PASSWORD;
+			
+			//Debugging
+			Pin DebuggingPin('C', 0, false);
 
 void callback(char* topic, byte* payload, unsigned int length) {
 	Serial.print("Message arrived [");
@@ -50,22 +53,25 @@ void callback(char* topic, byte* payload, unsigned int length) {
 	for (int i=0;i<length;i++) {
 		Serial.print((char)payload[i]);
 	}
-	//Vorsicht ggf. negierte Logik, Status der LED leuchtet nun wenn payload[0] == '1'
 	if((char)payload[0] == '1')
 	{
 		//wenn in Erdgeschoss/Wohnzimmer/Deckenlicht eine 1 steht, dann per CAN das Kommando für Licht einschalten senden
 		Serial.println("Licht wird angeschaltet");
+		DebuggingPin.setze_Status(true);
 		CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
 		CAN.write(Kommando_Licht_an);
 		CAN.endPacket();
+		DebuggingPin.setze_Status(false);
 	}
 	else
 	{
-		//wenn in Erdgeschoss/Wohnzimmer/Deckenlicht eine 1 steht, dann per CAN das Kommando für Licht einschalten senden
+		//wenn in Erdgeschoss/Wohnzimmer/Deckenlicht etwas anderes steht, dann per CAN das Kommando für Licht ausschalten senden
 		Serial.println("Licht wird ausgeschaltet");
+		DebuggingPin.setze_Status(true);
 		CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
-		CAN.write(Kommando_Licht_an);
+		CAN.write(Kommando_Licht_aus);
 		CAN.endPacket();		
+		DebuggingPin.setze_Status(false);
 	}
 	Serial.println();
 }
@@ -102,8 +108,8 @@ void setup()
 	mqttClient.setServer(server, 1883);
 	mqttClient.setCallback(callback);
 	Serial.println("MQTT initialisiert");
-	Ethernet.begin(mac); //IP Adresse per DHCP holen klappt bei Philipp
-	//Ethernet.begin(mac, ip);
+	//Ethernet.begin(mac); //IP Adresse per DHCP holen klappt bei Philipp
+	Ethernet.begin(mac, ip);
 	Serial.println("Ethernet.begin()");
 	// Allow the hardware to sort itself out
 	delay(1500);
@@ -113,7 +119,7 @@ void setup()
 		  Serial.println("Starting CAN failed!");
 		  while (1);
 	  }
-	  
+	Serial.print("IP Adresse Arduino: ");    
 	Serial.println(Ethernet.localIP());
 }
 

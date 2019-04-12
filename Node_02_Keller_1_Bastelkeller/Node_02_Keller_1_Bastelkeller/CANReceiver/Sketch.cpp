@@ -64,7 +64,7 @@ void setup() {
 	  Serial.begin(9600);
 	  while (!Serial);
 
-	  Serial.println("CAN Node");
+	  Serial.println("CAN Node 2");
 
 	  // start the CAN bus at 500 kbps
 	  if (!CAN.begin(500E3)) {
@@ -81,6 +81,7 @@ void loop() {
 	
 			if (Taster_1.StatusAenderung)
 			{
+				Serial.println("Taster 1 gedrueckt");
 				CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
 				CAN.write(Kommando_Licht_toggle);
 				CAN.endPacket();
@@ -88,6 +89,7 @@ void loop() {
 			}
 			if (Taster_2.StatusAenderung)
 			{
+				Serial.println("Taster 2 gedrueckt");
 				CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
 				CAN.write(Kommando_Licht_aus);
 				CAN.endPacket();

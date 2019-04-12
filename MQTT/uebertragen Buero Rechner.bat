@@ -1,2 +1,2 @@
-start "Title" "C:\Program Files (x86)\Arduino\hardware\tools\avr\bin\avrdude.exe" -C "C:\Program Files (x86)\Arduino\hardware\tools\avr\etc\avrdude.conf" -v -patmega328p -carduino -PCOM6 -b115200 -D -Uflash:w:"C:\Users\Basti\Documents\Atmel Studio\7.0\MQTT - Backup\MQTT\W5100MQTT_v2\Debug\W5100MQTT_v2.hex":i
+start "Title" "C:\Program Files (x86)\Arduino\hardware\tools\avr\bin\avrdude.exe" -C "C:\Program Files (x86)\Arduino\hardware\tools\avr\etc\avrdude.conf" -v -patmega328p -carduino -PCOM6 -b115200 -D -Uflash:w:"C:\Users\Basti\Documents\Atmel Studio\7.0\SmartHome\MQTT\MQTT\W5100MQTT_v2\Debug\W5100MQTT_v2.hex":i
 pause
