@@ -7,3 +7,5 @@ account*.h
 *.map
 *.srec
 *.eep
+account.java
+account.class
