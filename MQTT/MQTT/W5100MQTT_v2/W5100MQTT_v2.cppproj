@@ -90,6 +90,29 @@
       <Value>..\include\libraries\SPI\src</Value>
       <Value>..\include\libraries\CAN\src</Value>
       <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\include</Value>
+      <Value>..\include\libraries\ArduinoJson</Value>
+      <Value>..\include\libraries\ArduinoJson\src</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Array</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Collection</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Deserialization</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Document</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Json</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Memory</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Misc</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\MsgPack</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Numbers</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Object</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Operators</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\gsl</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\mpl</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\type_traits</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Serialization</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Strings</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\StringStorage</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Variant</Value>
+      <Value>..\include\libraries\ArduinoJson\third-party\catch</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
@@ -122,6 +145,29 @@
       <Value>..\include\libraries\SPI\src</Value>
       <Value>..\include\libraries\CAN\src</Value>
       <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\include</Value>
+      <Value>..\include\libraries\ArduinoJson</Value>
+      <Value>..\include\libraries\ArduinoJson\src</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Array</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Collection</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Deserialization</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Document</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Json</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Memory</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Misc</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\MsgPack</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Numbers</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Object</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Operators</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\gsl</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\mpl</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\type_traits</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Serialization</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Strings</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\StringStorage</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Variant</Value>
+      <Value>..\include\libraries\ArduinoJson\third-party\catch</Value>
     </ListValues>
   </avrgcccpp.compiler.directories.IncludePaths>
   <avrgcccpp.compiler.optimization.level>Optimize for size (-Os)</avrgcccpp.compiler.optimization.level>
@@ -182,6 +228,29 @@
       <Value>%24(ProjectDir)\..\ArduinoCore\include\variants\standard</Value>
       <Value>..\include\libraries\SPI\src</Value>
       <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\include</Value>
+      <Value>..\include\libraries\ArduinoJson</Value>
+      <Value>..\include\libraries\ArduinoJson\src</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Array</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Collection</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Deserialization</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Document</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Json</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Memory</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Misc</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\MsgPack</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Numbers</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Object</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Operators</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\gsl</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\mpl</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\type_traits</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Serialization</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Strings</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\StringStorage</Value>
+      <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Variant</Value>
+      <Value>..\include\libraries\ArduinoJson\third-party\catch</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
@@ -250,6 +319,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="account_Buero.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Aktor.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Aktor.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="ESP32SJA1000.cpp">

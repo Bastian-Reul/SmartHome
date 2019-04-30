@@ -1,0 +1,3 @@
+Dies ist das alte Atmel Studio Projekt. Hier wurden nur erste Gehversuche mit dem CAN Controller gemacht.
+Die Entwicklung der HUB Software geschieht unter: SmartHome/MQTT/MQTT/W5100MQTT_v2/Sketch.cpp
+30.04.2019 Bastian Reul vom Bürorechner

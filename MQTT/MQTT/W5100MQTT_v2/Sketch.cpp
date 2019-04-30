@@ -2,10 +2,13 @@
 #include <SPI.h>
 #include <Ethernet.h>
 #include <PubSubClient.h>
+#include <ArduinoJson.h>
 #include "CAN.h"
 #include "account_Buero.h"
 #include "Hausbus.h"
 #include "Pin_ATMEGA328.h"
+#include "Aktor.h"
+
 
 uint32_t CAN_Buffer[20];
 uint32_t CAN_UID_List[20] = {
@@ -32,6 +35,14 @@ uint32_t CAN_UID_List[20] = {
 
 };
 
+const size_t capacity = JSON_OBJECT_SIZE(5) + 90;
+DynamicJsonDocument doc(capacity);
+
+const char* json;
+Aktor Aktor1 = new Aktor();
+
+
+
 //#define RELAIS_PIN 8
 //#define CAN_SCHIELD_SPI_CS 2 //Arduino Zählweise Pin 2 wird als CS Leitung benutzt
 //#define SPI_CAN_SETTINGS CAN_SCHIELD_SPI_CS, SPISettings(4000000, MSBFIRST, SPI_MODE0)
@@ -52,12 +63,22 @@ void callback(char* topic, byte* payload, unsigned int length) {
 	for (int i=0;i<length;i++) {
 		Serial.print((char)payload[i]);
 	}
-	if((char)payload[0] == '1')
+	
+	json = payload;
+	deserializeJson(doc, json);
+	Aktor1._Topic =  doc["_Topic"];
+	Aktor1._status = doc["_status"];
+	Aktor1._schaltvorgaenge = doc["_schaltvorgaenge"];
+	Aktor1.Adresse = doc["Adresse"];
+	Aktor1._toggle_trigger = doc["_toggle_trigger"];
+	
+	//if((char)payload[0] == '1')
+	if(Aktor1._toggle_trigger)
 	{
 		//wenn in Erdgeschoss/Wohnzimmer/Deckenlicht eine 1 steht, dann per CAN das Kommando für Licht einschalten senden
 		Serial.println("Licht wird angeschaltet");
 		CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
-		CAN.write(Kommando_Licht_an);
+		CAN.write(Kommando_Licht_toggle);
 		CAN.endPacket();
 	}
 	else
@@ -84,7 +105,8 @@ void reconnect() {
 			// Once connected, publish an announcement...
 			mqttClient.publish("outTopic","toggle");
 			// ... and resubscribe
-			mqttClient.subscribe("Erdgeschoss/Wohnzimmer/Deckenlicht");
+			//mqttClient.subscribe("Erdgeschoss/Wohnzimmer/Deckenlicht");
+			mqttClient.subscribe("Test/objects/Aktor1");
 			} else {
 			Serial.print("failed, rc=");
 			Serial.print(mqttClient.state());
