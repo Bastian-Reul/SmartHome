@@ -113,6 +113,8 @@
       <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\StringStorage</Value>
       <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Variant</Value>
       <Value>..\include\libraries\ArduinoJson\third-party\catch</Value>
+      <Value>..\include\libraries\Arduino_JSON\src</Value>
+      <Value>..\include\libraries\Arduino_JSON\src\cjson</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
@@ -168,6 +170,8 @@
       <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\StringStorage</Value>
       <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Variant</Value>
       <Value>..\include\libraries\ArduinoJson\third-party\catch</Value>
+      <Value>..\include\libraries\Arduino_JSON\src</Value>
+      <Value>..\include\libraries\Arduino_JSON\src\cjson</Value>
     </ListValues>
   </avrgcccpp.compiler.directories.IncludePaths>
   <avrgcccpp.compiler.optimization.level>Optimize for size (-Os)</avrgcccpp.compiler.optimization.level>
@@ -251,6 +255,8 @@
       <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\StringStorage</Value>
       <Value>..\include\libraries\ArduinoJson\src\ArduinoJson\Variant</Value>
       <Value>..\include\libraries\ArduinoJson\third-party\catch</Value>
+      <Value>..\include\libraries\Arduino_JSON\src</Value>
+      <Value>..\include\libraries\Arduino_JSON\src\cjson</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
@@ -287,6 +293,8 @@
       <Value>../include/libraries/CAN/src</Value>
       <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.209\include</Value>
       <Value>../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src</Value>
+      <Value>..\include\libraries\Arduino_JSON\src</Value>
+      <Value>..\include\libraries\Arduino_JSON\src\cjson</Value>
     </ListValues>
   </avrgcccpp.compiler.directories.IncludePaths>
   <avrgcccpp.compiler.optimization.level>Optimize for size (-Os)</avrgcccpp.compiler.optimization.level>
@@ -339,6 +347,18 @@
     <Compile Include="Hausbus.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\libraries\Arduino_JSON\src\Arduino_JSON.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\libraries\Arduino_JSON\src\cjson\cJSON.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\libraries\Arduino_JSON\src\JSON.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\libraries\Arduino_JSON\src\JSONVar.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\libraries\CAN\src\CAN.h">
       <SubType>compile</SubType>
     </Compile>
@@ -358,6 +378,15 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Sketch.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\libraries\Arduino_JSON\src\cjson\cJSON.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\libraries\Arduino_JSON\src\JSON.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\libraries\Arduino_JSON\src\JSONVar.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\libraries\CAN\src\CANController.cpp">
@@ -401,12 +430,18 @@
     <Folder Include="Debug\src\libraries\SPI\src\" />
     <Folder Include="include\" />
     <Folder Include="include\libraries\" />
+    <Folder Include="include\libraries\Arduino_JSON\" />
+    <Folder Include="include\libraries\Arduino_JSON\src\" />
+    <Folder Include="include\libraries\Arduino_JSON\src\cjson\" />
     <Folder Include="include\libraries\CAN\" />
     <Folder Include="include\libraries\CAN\src\" />
     <Folder Include="include\libraries\SPI\" />
     <Folder Include="include\libraries\SPI\src\" />
     <Folder Include="src\" />
     <Folder Include="src\libraries\" />
+    <Folder Include="src\libraries\Arduino_JSON\" />
+    <Folder Include="src\libraries\Arduino_JSON\src\" />
+    <Folder Include="src\libraries\Arduino_JSON\src\cjson\" />
     <Folder Include="src\libraries\CAN\" />
     <Folder Include="src\libraries\CAN\src\" />
     <Folder Include="src\libraries\SPI\" />

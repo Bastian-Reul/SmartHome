@@ -14,7 +14,7 @@ class Aktor
 {
 //variables
 public:
-	String _Topic;
+	const char *_Topic;
 	bool _status = false;
 	int _schaltvorgaenge = 0;
 	bool _toggle_trigger = false;
@@ -30,7 +30,6 @@ protected:
 private:
 	Aktor( const Aktor &c );
 	Aktor& operator=( const Aktor &c );
-
 }; //Aktor
 
 #endif //__AKTOR_H__

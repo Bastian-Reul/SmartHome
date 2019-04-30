@@ -2,7 +2,7 @@
 #include <SPI.h>
 #include <Ethernet.h>
 #include <PubSubClient.h>
-#include <ArduinoJson.h>
+#include <Arduino_JSON.h>
 #include "CAN.h"
 #include "account_Buero.h"
 #include "Hausbus.h"
@@ -35,11 +35,9 @@ uint32_t CAN_UID_List[20] = {
 
 };
 
-const size_t capacity = JSON_OBJECT_SIZE(5) + 90;
-DynamicJsonDocument doc(capacity);
+//char input[] = {"_Topic":"Test/objects/Aktor1","_status":false,"_schaltvorgaenge":2,"Adresse":739,"_toggle_trigger":true};
+	
 
-const char* json;
-Aktor Aktor1 = new Aktor();
 
 
 
@@ -64,13 +62,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
 		Serial.print((char)payload[i]);
 	}
 	
-	json = payload;
-	deserializeJson(doc, json);
-	Aktor1._Topic =  doc["_Topic"];
-	Aktor1._status = doc["_status"];
-	Aktor1._schaltvorgaenge = doc["_schaltvorgaenge"];
-	Aktor1.Adresse = doc["Adresse"];
-	Aktor1._toggle_trigger = doc["_toggle_trigger"];
+	Aktor Aktor1 = JSON.parse(payload);
+	//Vll. Hier schauen: https://github.com/arduino-libraries/Arduino_JSON
 	
 	//if((char)payload[0] == '1')
 	if(Aktor1._toggle_trigger)
