@@ -57,9 +57,6 @@ SUBDIRS :=  \
 ../include/libraries/SPI/src/ \
 ../src/ \
 ../src/libraries/ \
-../src/libraries/Arduino_JSON/ \
-../src/libraries/Arduino_JSON/src/ \
-../src/libraries/Arduino_JSON/src/cjson/ \
 ../src/libraries/CAN/ \
 ../src/libraries/CAN/src/ \
 ../src/libraries/SPI/ \
@@ -73,9 +70,6 @@ C_SRCS +=  \
 ../Hausbus.cpp \
 ../Pin_ATMEGA328.cpp \
 ../Sketch.cpp \
-../src/libraries/Arduino_JSON/src/cjson/cJSON.c \
-../src/libraries/Arduino_JSON/src/JSON.cpp \
-../src/libraries/Arduino_JSON/src/JSONVar.cpp \
 ../src/libraries/CAN/src/CANController.cpp \
 ../src/libraries/CAN/src/MCP2515.cpp \
 ../src/libraries/SPI/src/SPI.cpp \
@@ -94,9 +88,6 @@ ESP32SJA1000.o \
 Hausbus.o \
 Pin_ATMEGA328.o \
 Sketch.o \
-src/libraries/Arduino_JSON/src/cjson/cJSON.o \
-src/libraries/Arduino_JSON/src/JSON.o \
-src/libraries/Arduino_JSON/src/JSONVar.o \
 src/libraries/CAN/src/CANController.o \
 src/libraries/CAN/src/MCP2515.o \
 src/libraries/SPI/src/SPI.o \
@@ -108,9 +99,6 @@ ESP32SJA1000.o \
 Hausbus.o \
 Pin_ATMEGA328.o \
 Sketch.o \
-src/libraries/Arduino_JSON/src/cjson/cJSON.o \
-src/libraries/Arduino_JSON/src/JSON.o \
-src/libraries/Arduino_JSON/src/JSONVar.o \
 src/libraries/CAN/src/CANController.o \
 src/libraries/CAN/src/MCP2515.o \
 src/libraries/SPI/src/SPI.o \
@@ -122,9 +110,6 @@ ESP32SJA1000.d \
 Hausbus.d \
 Pin_ATMEGA328.d \
 Sketch.d \
-src/libraries/Arduino_JSON/src/cjson/cJSON.d \
-src/libraries/Arduino_JSON/src/JSON.d \
-src/libraries/Arduino_JSON/src/JSONVar.d \
 src/libraries/CAN/src/CANController.d \
 src/libraries/CAN/src/MCP2515.d \
 src/libraries/SPI/src/SPI.d \
@@ -136,9 +121,6 @@ ESP32SJA1000.d \
 Hausbus.d \
 Pin_ATMEGA328.d \
 Sketch.d \
-src/libraries/Arduino_JSON/src/cjson/cJSON.d \
-src/libraries/Arduino_JSON/src/JSON.d \
-src/libraries/Arduino_JSON/src/JSONVar.d \
 src/libraries/CAN/src/CANController.d \
 src/libraries/CAN/src/MCP2515.d \
 src/libraries/SPI/src/SPI.d \
@@ -162,84 +144,63 @@ LINKER_SCRIPT_DEP+=
 ./Aktor.o: .././Aktor.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson" -I"../src/libraries/ArduinoJson" -I"../src/libraries"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./ESP32SJA1000.o: .././ESP32SJA1000.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson" -I"../src/libraries/ArduinoJson" -I"../src/libraries"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./Hausbus.o: .././Hausbus.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson" -I"../src/libraries/ArduinoJson" -I"../src/libraries"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./Pin_ATMEGA328.o: .././Pin_ATMEGA328.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson" -I"../src/libraries/ArduinoJson" -I"../src/libraries"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./Sketch.o: .././Sketch.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-src/libraries/Arduino_JSON/src/cjson/cJSON.o: ../src/libraries/Arduino_JSON/src/cjson/cJSON.c
-	@echo Building file: $<
-	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"..\include\libraries\SPI\src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"..\include\libraries\ArduinoJson" -I"..\include\libraries\ArduinoJson\src" -I"..\include\libraries\ArduinoJson\src\ArduinoJson" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Array" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Collection" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Deserialization" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Document" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Json" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Memory" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Misc" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\MsgPack" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Numbers" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Object" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Operators" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\gsl" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\mpl" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Polyfills\type_traits" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Serialization" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Strings" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\StringStorage" -I"..\include\libraries\ArduinoJson\src\ArduinoJson\Variant" -I"..\include\libraries\ArduinoJson\third-party\catch" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu99 -std=gnu11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-src/libraries/Arduino_JSON/src/JSON.o: ../src/libraries/Arduino_JSON/src/JSON.cpp
-	@echo Building file: $<
-	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-src/libraries/Arduino_JSON/src/JSONVar.o: ../src/libraries/Arduino_JSON/src/JSONVar.cpp
-	@echo Building file: $<
-	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson" -I"../src/libraries/ArduinoJson" -I"../src/libraries"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 src/libraries/CAN/src/CANController.o: ../src/libraries/CAN/src/CANController.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson" -I"../src/libraries/ArduinoJson" -I"../src/libraries"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 src/libraries/CAN/src/MCP2515.o: ../src/libraries/CAN/src/MCP2515.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson" -I"../src/libraries/ArduinoJson" -I"../src/libraries"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 src/libraries/SPI/src/SPI.o: ../src/libraries/SPI/src/SPI.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson" -I"../src/libraries/ArduinoJson" -I"../src/libraries"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./Taster.o: .././Taster.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson" -I"../src/libraries/ArduinoJson" -I"../src/libraries"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 

@@ -2,7 +2,7 @@
 #include <SPI.h>
 #include <Ethernet.h>
 #include <PubSubClient.h>
-#include <Arduino_JSON.h>
+#include <ArduinoJson.h>
 #include "CAN.h"
 #include "account_Buero.h"
 #include "Hausbus.h"
@@ -11,32 +11,32 @@
 
 
 uint32_t CAN_Buffer[20];
-uint32_t CAN_UID_List[20] = {
+uint32_t CAN_UID_List[3] = {
 	/*	0	*/					ID_02_Keller_1_Bastelkeller_Lichtschalter_ROT,
 	/*	1	*/					ID_02_Keller_1_Bastelkeller_Lichtschalter_Gruen,
 	/*	2	*/					ID_02_Keller_1_Bastelkeller_Lichtschalter_BLAU,
-	/*	3	*/					UID_MASK_ZERO,
-	/*	4	*/					UID_MASK_ZERO,
-	/*	5	*/					UID_MASK_ZERO,
-	/*	6	*/					UID_MASK_ZERO,
-	/*	7	*/					UID_MASK_ZERO,
-	/*	8	*/					UID_MASK_ZERO,
-	/*  9	*/					UID_MASK_ZERO,
-	/* 10	*/					UID_MASK_ZERO,
-	/* 11	*/					UID_MASK_ZERO,
-	/* 12	*/					UID_MASK_ZERO,
-	/* 13	*/					UID_MASK_ZERO,
-	/* 14	*/					UID_MASK_ZERO,
-	/* 15	*/					UID_MASK_ZERO,
-	/* 16	*/					UID_MASK_ZERO,
-	/* 17	*/					UID_MASK_ZERO,
-	/* 18	*/					UID_MASK_ZERO,
-	/* 19	*/					UID_MASK_ZERO
+	/*	3	*/		//			UID_MASK_ZERO,
+	/*	4	*/		//			UID_MASK_ZERO,
+	/*	5	*/		//			UID_MASK_ZERO,
+	/*	6	*/		//			UID_MASK_ZERO,
+	/*	7	*/		//			UID_MASK_ZERO,
+	/*	8	*/		//			UID_MASK_ZERO,
+	/*  9	*/		//			UID_MASK_ZERO,
+	/* 10	*/		//			UID_MASK_ZERO,
+	/* 11	*/		//			UID_MASK_ZERO,
+	/* 12	*/		//			UID_MASK_ZERO,
+	/* 13	*/		//			UID_MASK_ZERO,
+	/* 14	*/		//			UID_MASK_ZERO,
+	/* 15	*/		//			UID_MASK_ZERO,
+	/* 16	*/		//			UID_MASK_ZERO,
+	/* 17	*/		//			UID_MASK_ZERO,
+	/* 18	*/		//			UID_MASK_ZERO,
+	/* 19	*/		//			UID_MASK_ZERO
 
 };
 
 //char input[] = {"_Topic":"Test/objects/Aktor1","_status":false,"_schaltvorgaenge":2,"Adresse":739,"_toggle_trigger":true};
-	
+		Aktor Aktor1;
 
 
 
@@ -46,9 +46,13 @@ uint32_t CAN_UID_List[20] = {
 //#define SPI_CAN_SETTINGS CAN_SCHIELD_SPI_CS, SPISettings(4000000, MSBFIRST, SPI_MODE0)
 
 			// Update these with values suitable for your network.
-			byte mac[]    = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
+			byte mac[]    = {  0xDA, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
+			//byte ip[] = {HUB_IP};
 			IPAddress ip(HUB_IP);
 			IPAddress server(MQTT_SERVERIP);
+			IPAddress gateway(GatewayWHS);
+			IPAddress subnet(SubnetWHS);
+			//IPAddress DNSipServer(DNS_ServerBuero);
 			//IPAddress server(192, 168, 0, 2);
 			char mqtt_user[] = USERNAME;
 			char mqtt_password[] = PASSWORD;
@@ -61,9 +65,13 @@ void callback(char* topic, byte* payload, unsigned int length) {
 	for (int i=0;i<length;i++) {
 		Serial.print((char)payload[i]);
 	}
-	
-	Aktor Aktor1 = JSON.parse(payload);
-	//Vll. Hier schauen: https://github.com/arduino-libraries/Arduino_JSON
+	/*		StaticJsonDocument<116> doc;
+	deserializeJson(doc, payload);
+	    Aktor1._Topic = doc["_Topic"];
+	    Aktor1._status = doc["_status"];
+	    Aktor1._schaltvorgaenge = doc["_schaltvorgaenge"];
+	    Aktor1._toggle_trigger = doc["_toggle_trigger"];
+	    Aktor1.Adresse = doc["Adresse"];*/
 	
 	//if((char)payload[0] == '1')
 	if(Aktor1._toggle_trigger)
@@ -115,22 +123,27 @@ void setup()
 //	pinMode(RELAIS_PIN, OUTPUT);
 	Serial.begin(9600);
 	Serial.println("Arduino started");
-	mqttClient.setServer(server, 1883);
-	mqttClient.setCallback(callback);
-	Serial.println("MQTT initialisiert");
+		
+
+	Ethernet.begin(mac, ip, gateway, subnet);
 	//Ethernet.begin(mac); //IP Adresse per DHCP holen klappt bei Philipp
-	Ethernet.begin(mac, ip);
-	Serial.println("Ethernet.begin()");
+	Serial.println("Ethernet wurde gestartet");
+
 	// Allow the hardware to sort itself out
 	delay(1500);
+		Serial.print("IP Adresse Arduino: ");
+		Serial.println(Ethernet.localIP());
+		
+		mqttClient.setServer(server, 1883);
+		mqttClient.setCallback(callback);
+		Serial.println("MQTT initialisiert");
 	
 	  // start the CAN bus at 500 kbps
 	  if (!CAN.begin(500E3)) {
 		  Serial.println("Starting CAN failed!");
 		  while (1);
 	  }
-	Serial.print("IP Adresse Arduino: ");    
-	Serial.println(Ethernet.localIP());
+
 }
 
 void loop()

@@ -20,11 +20,11 @@ Version 0.1		30.12.2018
 Version 0.1a	03.04.2019
 */
 
-uint32_t BinaerPotenzen[] = { 1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536,131072,262144,524288,1048576,2097152,4194304,8388608,16777216,33554432,67108864,134217728,268435456,536870912,1073741824,2147483648 };
+//uint32_t BinaerPotenzen[] = { 1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536,131072,262144,524288,1048576,2097152,4194304,8388608,16777216,33554432,67108864,134217728,268435456,536870912,1073741824,2147483648 };
 
 
-uint32_t ID_Zusammensetzen (uint8_t *_8Bit_array/*, uint32_t *Zeiger*/)
-{
+//uint32_t ID_Zusammensetzen (uint8_t *_8Bit_array/*, uint32_t *Zeiger*/)
+//{
 /*	Serial.println("ID wird nun zusammengesetzt");
 	Serial.println(_8Bit_array[0]);
 	Serial.println(_8Bit_array[1]);
@@ -39,7 +39,7 @@ uint32_t ID_Zusammensetzen (uint8_t *_8Bit_array/*, uint32_t *Zeiger*/)
 	}
 	return Zeiger;
 	*/
-			uint32_t ID = 0;
+/*			uint32_t ID = 0;
 			uint32_t temp = 0;
 				for (int i=0; i<4; i++)
 				{
@@ -51,9 +51,9 @@ uint32_t ID_Zusammensetzen (uint8_t *_8Bit_array/*, uint32_t *Zeiger*/)
 				_8Bit_array[2] = 0;
 				_8Bit_array[3] = 0;
 				return ID;
-}
+}*/
 
-uint32_t ID_Maske_berechnen (uint32_t *_ID_Liste, uint8_t ID_list_lenght)
+/*uint32_t ID_Maske_berechnen (uint32_t *_ID_Liste, uint8_t ID_list_lenght)
 {
 	//ODER-Verknüfung aller IDs der Reihe nach
 	uint32_t Maske = 0;
@@ -62,10 +62,10 @@ uint32_t ID_Maske_berechnen (uint32_t *_ID_Liste, uint8_t ID_list_lenght)
 		Maske = Maske | _ID_Liste[i];
 	}
 	return Maske;
-}
+}*/
 
 //Die Funktion ist nötig zum Debugging, da eine Serielle Datenausgabe der ID mittels Serial.println(ID, BIN); keine führende Nullen ausgibt
-void ID_Ausgeben(uint32_t ID)
+/*void ID_Ausgeben(uint32_t ID)
 {
 	uint32_t rest = ID;
 	for (int i=31; i>=0; i--)
@@ -80,4 +80,4 @@ void ID_Ausgeben(uint32_t ID)
 			Serial.print('0');
 		}
 	}
-}
+}*/
