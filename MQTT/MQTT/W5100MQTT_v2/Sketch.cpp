@@ -4,7 +4,7 @@
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 #include "CAN.h"
-#include "account_Buero.h"
+#include "account_Labor.h"
 #include "Hausbus.h"
 #include "Pin_ATMEGA328.h"
 #include "Aktor.h"
@@ -94,8 +94,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
 }
 
 EthernetClient ethClient;
-PubSubClient mqttClient(ethClient);
-
+//PubSubClient mqttClient(ethClient);
+/*
 void reconnect() {
 	// Loop until we're reconnected
 	while (!mqttClient.connected()) {
@@ -116,7 +116,7 @@ void reconnect() {
 			delay(5000);
 		}
 	}
-}
+}*/
 
 void setup()
 {
@@ -130,10 +130,10 @@ void setup()
 	Serial.println("Ethernet wurde gestartet");
 
 	// Allow the hardware to sort itself out
-	delay(1500);
+	delay(5000);
 		Serial.print("IP Adresse Arduino: ");
 		Serial.println(Ethernet.localIP());
-		
+		/*-------------------05.07.2019
 		mqttClient.setServer(server, 1883);
 		mqttClient.setCallback(callback);
 		Serial.println("MQTT initialisiert");
@@ -143,15 +143,18 @@ void setup()
 		  Serial.println("Starting CAN failed!");
 		  while (1);
 	  }
-
+		*///-------------------05.07.2019
 }
 
 void loop()
-{
+{	/*-------------------05.07.2019
 	if (!mqttClient.connected()) {
 		reconnect();
 	}
 	mqttClient.loop();
+	*///-------------------05.07.2019
+
+
 
 	//mqttClient.publish("outTopic","hello world");
 /*
