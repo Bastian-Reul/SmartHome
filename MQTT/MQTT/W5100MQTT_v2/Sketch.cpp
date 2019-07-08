@@ -4,10 +4,11 @@
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 #include "CAN.h"
-#include "account_Labor.h"
+#include "src/account_Labor.h"
 #include "Hausbus.h"
 #include "Pin_ATMEGA328.h"
 #include "Aktor.h"
+#include "../ArduinoCore/include/core/Arduino.h"
 
 
 uint32_t CAN_Buffer[20];
@@ -46,12 +47,14 @@ uint32_t CAN_UID_List[3] = {
 //#define SPI_CAN_SETTINGS CAN_SCHIELD_SPI_CS, SPISettings(4000000, MSBFIRST, SPI_MODE0)
 
 			// Update these with values suitable for your network.
-			byte mac[]    = {  0xDA, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
+			byte mac[]    = {  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 			//byte ip[] = {HUB_IP};
-			IPAddress ip(HUB_IP);
-			IPAddress server(MQTT_SERVERIP);
-			IPAddress gateway(GatewayWHS);
-			IPAddress subnet(SubnetWHS);
+			IPAddress ip_WHS(HUB_IP);
+			IPAddress server_WHS(MQTT_SERVERIP);
+			IPAddress gateway_WHS(Gateway_Labor);
+			IPAddress subnet_WHS(Subnet_Labor);
+			IPAddress DNS_Server_WHS(DNS_Server_Labor);
+			
 			//IPAddress DNSipServer(DNS_ServerBuero);
 			//IPAddress server(192, 168, 0, 2);
 			char mqtt_user[] = USERNAME;
@@ -125,7 +128,8 @@ void setup()
 	Serial.println("Arduino started");
 		
 
-	Ethernet.begin(mac, ip, gateway, subnet);
+	//Unbedingt diese Reihenfolge beachten, DNS Server und IP Adresse sind vertauscht!!!!!!!
+	Ethernet.begin(mac, DNS_Server_WHS, ip_WHS, gateway_WHS, subnet_WHS);
 	//Ethernet.begin(mac); //IP Adresse per DHCP holen klappt bei Philipp
 	Serial.println("Ethernet wurde gestartet");
 
@@ -133,6 +137,10 @@ void setup()
 	delay(5000);
 		Serial.print("IP Adresse Arduino: ");
 		Serial.println(Ethernet.localIP());
+		Serial.print("Gateway: ");
+		Serial.println(Ethernet.gatewayIP());
+		Serial.print("DNS: ");
+		//Serial.println(Ethernet.dnsServerIP());
 		/*-------------------05.07.2019
 		mqttClient.setServer(server, 1883);
 		mqttClient.setCallback(callback);

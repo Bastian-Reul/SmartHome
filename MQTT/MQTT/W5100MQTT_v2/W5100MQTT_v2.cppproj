@@ -328,9 +328,6 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="account_Buero.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Aktor.cpp">
       <SubType>compile</SubType>
     </Compile>
