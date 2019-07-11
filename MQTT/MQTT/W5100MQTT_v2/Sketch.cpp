@@ -74,11 +74,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
 	    Aktor1._status = doc["_status"];
 	    Aktor1._schaltvorgaenge = doc["_schaltvorgaenge"];
 	    Aktor1._toggle_trigger = doc["_toggle_trigger"];
-	    Aktor1.Adresse = doc["Adresse"];*/
-	
+	    Aktor1.Adresse = doc["Adresse"];
+	*/
 	if((char)payload[0] == '1')
 	
-	//---------------------09.07.2019
+
 	
 	//if(Aktor1._toggle_trigger)
 	{
@@ -114,8 +114,8 @@ void reconnect() {
 			// Once connected, publish an announcement...
 			mqttClient.publish("outTopic","toggle");
 			// ... and resubscribe
-			//mqttClient.subscribe("Erdgeschoss/Wohnzimmer/Deckenlicht");
-			mqttClient.subscribe("Test/objects/Aktor1");
+			mqttClient.subscribe("Erdgeschoss/Wohnzimmer/Deckenlicht");
+			//mqttClient.subscribe("Test/objects/Aktor1");
 			} else {
 			Serial.print("failed, rc=");
 			Serial.print(mqttClient.state());
