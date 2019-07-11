@@ -121,8 +121,9 @@ boolean PubSubClient::connect(const char *id, const char *user, const char *pass
             result = _client->connect(this->domain, this->port);
 			
         } else {
-			Serial.println("es wird verbunden nach ");
-			Serial.println(ip);
+			Serial.print("MQTT_VERSION: ");
+			Serial.println(MQTT_VERSION);
+		//	Serial.println(ip);
             result = _client->connect(this->ip, this->port);
         }
         if (result == 1) {

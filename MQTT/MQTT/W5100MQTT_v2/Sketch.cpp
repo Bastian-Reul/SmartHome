@@ -76,8 +76,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
 	    Aktor1._toggle_trigger = doc["_toggle_trigger"];
 	    Aktor1.Adresse = doc["Adresse"];*/
 	
-	//if((char)payload[0] == '1')
-	if(Aktor1._toggle_trigger)
+	if((char)payload[0] == '1')
+	
+	//---------------------09.07.2019
+	
+	//if(Aktor1._toggle_trigger)
 	{
 		//wenn in Erdgeschoss/Wohnzimmer/Deckenlicht eine 1 steht, dann per CAN das Kommando für Licht einschalten senden
 		Serial.println("Licht wird angeschaltet");
@@ -93,18 +96,20 @@ void callback(char* topic, byte* payload, unsigned int length) {
 		CAN.write(Kommando_Licht_aus);
 		CAN.endPacket();		
 	}
+
 	Serial.println();
+
 }
 
 EthernetClient ethClient;
-//PubSubClient mqttClient(ethClient);
-/*
+PubSubClient mqttClient(ethClient);
+
 void reconnect() {
 	// Loop until we're reconnected
 	while (!mqttClient.connected()) {
 		Serial.print("Attempting MQTT connection...");
 		// Attempt to connect
-		if (mqttClient.connect("arduinoClient", mqtt_user, mqtt_password)) {
+		if (mqttClient.connect("hfuigf87e", mqtt_user, mqtt_password)) {
 			Serial.println("connected");
 			// Once connected, publish an announcement...
 			mqttClient.publish("outTopic","toggle");
@@ -119,7 +124,7 @@ void reconnect() {
 			delay(5000);
 		}
 	}
-}*/
+}
 
 void setup()
 {
@@ -127,40 +132,37 @@ void setup()
 	Serial.begin(9600);
 	Serial.println("Arduino started");
 		
-
+	mqttClient.setServer(server_WHS, 1883);
+	mqttClient.setCallback(callback);
+	Serial.println("MQTT initialisiert");
+	//Serial.println(MQTT_VERSION);
+			
 	//Unbedingt diese Reihenfolge beachten, DNS Server und IP Adresse sind vertauscht!!!!!!!
 	Ethernet.begin(mac, DNS_Server_WHS, ip_WHS, gateway_WHS, subnet_WHS);
 	//Ethernet.begin(mac); //IP Adresse per DHCP holen klappt bei Philipp
 	Serial.println("Ethernet wurde gestartet");
 
 	// Allow the hardware to sort itself out
-	delay(5000);
+	delay(1500);
 		Serial.print("IP Adresse Arduino: ");
 		Serial.println(Ethernet.localIP());
 		Serial.print("Gateway: ");
 		Serial.println(Ethernet.gatewayIP());
-		Serial.print("DNS: ");
-		//Serial.println(Ethernet.dnsServerIP());
-		/*-------------------05.07.2019
-		mqttClient.setServer(server, 1883);
-		mqttClient.setCallback(callback);
-		Serial.println("MQTT initialisiert");
-	
+		
 	  // start the CAN bus at 500 kbps
 	  if (!CAN.begin(500E3)) {
 		  Serial.println("Starting CAN failed!");
 		  while (1);
 	  }
-		*///-------------------05.07.2019
 }
 
 void loop()
-{	/*-------------------05.07.2019
+{	
 	if (!mqttClient.connected()) {
 		reconnect();
 	}
 	mqttClient.loop();
-	*///-------------------05.07.2019
+	
 
 
 
@@ -216,7 +218,7 @@ void loop()
 
   Serial.println("done");
 */
-  delay(5000);
+ // delay(5000);
 
 }
 
