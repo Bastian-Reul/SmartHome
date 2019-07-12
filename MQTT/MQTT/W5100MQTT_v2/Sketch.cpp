@@ -36,7 +36,9 @@ uint32_t CAN_UID_List[3] = {
 
 };
 
-//char input[] = {"_Topic":"Test/objects/Aktor1","_status":false,"_schaltvorgaenge":2,"Adresse":739,"_toggle_trigger":true};
+char testinput[] =	{"\"_Topic\":\"Test/objects/Aktor1\",\"_status\":false,\"_schaltvorgaenge\":2,\"Adresse\":739,\"_toggle_trigger\":true"};
+	
+	StaticJsonDocument<120> doc;
 		Aktor Aktor1;
 
 
@@ -68,19 +70,27 @@ void callback(char* topic, byte* payload, unsigned int length) {
 	for (int i=0;i<length;i++) {
 		Serial.print((char)payload[i]);
 	}
-	/*		StaticJsonDocument<116> doc;
-	deserializeJson(doc, payload);
-	    Aktor1._Topic = doc["_Topic"];
+	
+	//116 laut Rechner
+	//		StaticJsonDocument<116> doc;
+	
+	//deserializeJson(doc, payload);
+	deserializeJson(doc, testinput);
+	
+	 const char* _Topic;
+	 _Topic = doc["_Topic"];
+	 
+	    //Aktor1._Topic = doc["_Topic"];
 	    Aktor1._status = doc["_status"];
 	    Aktor1._schaltvorgaenge = doc["_schaltvorgaenge"];
 	    Aktor1._toggle_trigger = doc["_toggle_trigger"];
 	    Aktor1.Adresse = doc["Adresse"];
-	*/
-	if((char)payload[0] == '1')
+	
+	//if((char)payload[0] == '1')
 	
 
 	
-	//if(Aktor1._toggle_trigger)
+	if(Aktor1._toggle_trigger)
 	{
 		//wenn in Erdgeschoss/Wohnzimmer/Deckenlicht eine 1 steht, dann per CAN das Kommando für Licht einschalten senden
 		Serial.println("Licht wird angeschaltet");

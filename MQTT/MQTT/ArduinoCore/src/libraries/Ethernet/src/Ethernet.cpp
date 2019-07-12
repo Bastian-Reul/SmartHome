@@ -65,19 +65,19 @@ void EthernetClass::begin(uint8_t *mac_address, IPAddress local_ip, IPAddress dn
 void EthernetClass::begin(uint8_t *mac, IPAddress local_ip, IPAddress dns_server, IPAddress gateway, IPAddress subnet)
 {
   W5100.init();
-  Serial.println("W5100.init();");
+ // Serial.println("W5100.init();");
   SPI.beginTransaction(SPI_ETHERNET_SETTINGS);
-  Serial.println("SPI.beginTransaction(SPI_ETHERNET_SETTINGS);");
+ // Serial.println("SPI.beginTransaction(SPI_ETHERNET_SETTINGS);");
   W5100.setMACAddress(mac);
-  Serial.println("W5100.setMACAddress(mac);");
+ // Serial.println("W5100.setMACAddress(mac);");
   W5100.setIPAddress(local_ip.raw_address());
-  Serial.println("W5100.setIPAddress(local_ip.raw_address());");
+  //Serial.println("W5100.setIPAddress(local_ip.raw_address());");
   W5100.setGatewayIp(gateway.raw_address());
-  Serial.println("W5100.setGatewayIp(gateway.raw_address());");
+  //Serial.println("W5100.setGatewayIp(gateway.raw_address());");
   W5100.setSubnetMask(subnet.raw_address());
-  Serial.println("W5100.setSubnetMask(subnet.raw_address());");
+  //Serial.println("W5100.setSubnetMask(subnet.raw_address());");
   SPI.endTransaction();
-  Serial.println("SPI.endTransaction();");
+  //Serial.println("SPI.endTransaction();");
   _dnsServerAddress = dns_server;
 }
 
