@@ -21,6 +21,12 @@
     <ClInclude Include="JSON.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Aktor.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Taster.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -30,6 +36,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="JSON.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Aktor.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Taster.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
