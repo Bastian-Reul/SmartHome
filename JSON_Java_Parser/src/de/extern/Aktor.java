@@ -1,4 +1,6 @@
 
+	package de.extern;
+
 public class Aktor {
 
 	//char[]Topic;
@@ -7,7 +9,7 @@ public class Aktor {
 	int Adresse = 0;
 	boolean toogle_trigger = false; 
 	
-	void schalte_ein()
+	public void schalte_ein()
 	{
 		status = true;
 		Schaltvorgaenge++;
@@ -40,5 +42,10 @@ public class Aktor {
 		{
 			schalte(true);
 		}
+	}
+	
+	public boolean get_status()
+	{
+		return status;
 	}
 }
