@@ -55,4 +55,15 @@ public class String_Operationen {
 		return Positionen;
 	}
 	
+	//gibt die Länge eines Strings zurück
+	public static int lenght(char[] InputString)
+	{
+		int i=0;
+		while(InputString[i]!='\n')
+		{
+			i++;
+		}
+		return i;
+	}
+	
 }

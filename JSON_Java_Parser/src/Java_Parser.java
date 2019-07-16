@@ -9,9 +9,9 @@ public class Java_Parser {
 		// TODO Auto-generated method stub
 		Aktor Relais1 = new Aktor();
 
-		String JSON_string = "\"_Topic\":\"Test/objects/Aktor1\",\"_status\":false,\"_schaltvorgaenge\":2,\"Adresse\":739,\"_toggle_trigger\":true";
+		String JSON_string = "\"_Topic\":\"Test/objects/Aktor1\",\"_status\":false,\"_schaltvorgaenge\":2,\"_Adresse\":739,\"_toggle_trigger\":true";
 		char[] JSON_char_Array = JSON_string.toCharArray();
-		String JSON_string_neu = "\"_Topic\":\"Test/objects/Aktor1\",\"_status\":true,\"_schaltvorgaenge\":2,\"Adresse\":739,\"_toggle_trigger\":true\n";
+		String JSON_string_neu = "\"_Topic\":\"Test/objects/Aktor1\",\"_status\":true,\"_schaltvorgaenge\":2,\"_Adresse\":739,\"_toggle_trigger\":true\n";
 		char[] JSON_char_Array_neu = JSON_string_neu.toCharArray();
 		
 		
@@ -34,39 +34,26 @@ public class Java_Parser {
 		
 		char[] Relais_Array = Relais1.get_topic();
 		
-		for(int i=0; i<Relais1.get_Topic_Lanege(); i++)
-		{
-			System.out.print(Relais_Array[i]);
-		}
-		System.out.println(" ");
-		System.out.println("MQTT Topic Ende");
-		//Relais_Array[50] = '\n';
+
+			System.out.print(JSON_char_Array_neu);
+
 		
-		for(int i=0; i<100; i++)
-		{
-			System.out.print(Relais_Array[i]);
-		}
+		System.out.println("wird gewandelt");
+		System.out.println(" ");
+
 	
 		int[] positionen = new int[10];
 		positionen = String_Operationen.Positionen_von_Elementen_in_String(JSON_char_Array_neu, ',');
-		System.out.println(" ");
-		System.out.println(positionen[0]);
-		System.out.println(positionen[1]);
-		System.out.println(positionen[2]);
-		System.out.println(positionen[3]);
-		System.out.println(positionen[4]);
-		System.out.println(positionen[5]);
-		System.out.println(positionen[6]);
-		System.out.println(positionen[7]);
+
 		System.out.println(" ");
 		Relais1.JSON_2_Aktor(JSON_char_Array_neu);
 		System.out.println(" ");
-		System.out.println("Das neue Topic: ");
+	/*	System.out.println("Das neue Topic: ");
 		char [] neuer_Topic = Relais1.get_topic();
 		for(int i=0; neuer_Topic[i]!='\n'; i++)
 		{
 			System.out.print(neuer_Topic[i]);
-		}
+		}*/
 	}
 
 }

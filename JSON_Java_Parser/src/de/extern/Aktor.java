@@ -89,7 +89,41 @@ public class Aktor {
 		*/
 		System.out.println("JSON_2_Aktor:");
 
-		char[][] Param = new char[5][40];
+		char[][] Liste = new char[5][40];
+		
+		//Erkennen wieviele Kommata im Text überhaupt sind
+		int[] positionen = String_Operationen.Positionen_von_Elementen_in_String(JSON_Input, ',');
+		int anzahl_Positionen = 0;
+		for(int i=0; i<10; i++)
+		{
+			if(positionen[i]!=999)
+			{
+				anzahl_Positionen++;
+			}
+		}
+		
+		//im Bezug zum letzten Trennzeichen
+		int j=0; //j bestimmt an welcher Position wir im Ausgangsstring sind
+		int h=0; //h bestimmt an welcher Position Position wir in der aktuellen Zeile der Liste sind Liste[0-4][h]
+		int laenge_JSON_String = String_Operationen.lenght(JSON_Input);
+		for(int i=0; i<=anzahl_Positionen; i++) //i bestimmt in welcher Zeile von Liste[i][0-39] wir sind
+		{
+			for(h=0; (j<positionen[i])&&(j<laenge_JSON_String); h++)
+			{
+				Liste[i][h] = JSON_Input[j];
+				Liste[i][h+1] = '\n';
+				j++;
+			}
+			j++;
+		}
+		
+		//Debugging
+		for(int i=0; i<=anzahl_Positionen; i++)
+		{
+			System.out.println(Liste[i]);
+		}
+		
+	/*	
 		int[] quot_marks_pos = String_Operationen.search_for_next_two_quotation_marks(0, JSON_Input);
 		for(int i=0; i<(quot_marks_pos[1]-quot_marks_pos[0]-1); i++)
 		{
@@ -99,7 +133,7 @@ public class Aktor {
 		for(int i=0; Param[0][i]!='\n'; i++)
 		{
 			System.out.print(Param[0][i]);
-		}
+		}*/
 		//Im gutfall eine Rückmeldung geben, dass die Transformation geklappt hat
 		return 0;
 	}
