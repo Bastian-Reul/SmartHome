@@ -74,7 +74,17 @@ public class Aktor {
 	
 	public int JSON_2_Aktor(char[] JSON_Input)
 	{
-		//Im ersten Teil
+		/*Im ersten Teil wird der JSON String an dem Kommata aufgeteilt, so dass die Parameter getrennt voneinander, jedoch mit ihren
+		Bezeichner in einem String stehen:
+		"_Topic":"Test/objects/Aktor1","_status":true,"_schaltvorgaenge":2,"Adresse":739,"_toggle_trigger":true
+		wird zu:
+		char Liste[5][40]
+		[0]['"','_','T','o','p','i','c','"',':','"','T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','"']
+		[1]['"','_','s','t','a','t','u','s','"',':','t','r','u','e']
+		[2]
+		[3]
+		[4]
+		*/
 		System.out.println("JSON_2_Aktor:");
 		Topic = JSON_Input;
 		char[][] Param = new char[10][30];
