@@ -1,4 +1,5 @@
 import de.extern.Aktor;
+import de.extern.String_Operationen;
 
 public class Java_Parser {
 
@@ -45,6 +46,18 @@ public class Java_Parser {
 		{
 			System.out.print(Relais_Array[i]);
 		}
+	
+		int[] positionen = new int[10];
+		positionen = String_Operationen.Positionen_von_Elementen_in_String(JSON_char_Array_neu, ',');
+		System.out.println(" ");
+		System.out.println(positionen[0]);
+		System.out.println(positionen[1]);
+		System.out.println(positionen[2]);
+		System.out.println(positionen[3]);
+		System.out.println(positionen[4]);
+		System.out.println(positionen[5]);
+		System.out.println(positionen[6]);
+		System.out.println(positionen[7]);
 		System.out.println(" ");
 		Relais1.JSON_2_Aktor(JSON_char_Array_neu);
 		System.out.println(" ");
