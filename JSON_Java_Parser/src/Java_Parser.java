@@ -44,10 +44,14 @@ public class Java_Parser {
 	
 		int[] positionen = new int[10];
 		positionen = String_Operationen.Positionen_von_Elementen_in_String(JSON_char_Array_neu, ',');
-
+		Relais1.Ausgabe_GesammtStatus();
 		System.out.println(" ");
-		Relais1.JSON_2_Aktor(JSON_char_Array_neu);
+		if(Relais1.JSON_2_Aktor(JSON_char_Array_neu)!=0)
+		{
+			System.out.println("Fehler bei der JSON Konvertierung");
+		}
 		System.out.println(" ");
+		Relais1.Ausgabe_GesammtStatus();
 	/*	System.out.println("Das neue Topic: ");
 		char [] neuer_Topic = Relais1.get_topic();
 		for(int i=0; neuer_Topic[i]!='\n'; i++)

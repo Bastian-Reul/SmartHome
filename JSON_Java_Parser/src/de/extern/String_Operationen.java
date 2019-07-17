@@ -66,4 +66,75 @@ public class String_Operationen {
 		return i;
 	}
 	
+	public static char[] String_to_Char_Array(String eingabestring)
+	{
+		char[] AusgabeArray = new char[40];
+		AusgabeArray= eingabestring.toCharArray();	
+		return AusgabeArray;
+	}
+	
+	public static int char_array_to_int(char[] InputString)
+	{
+		int zahl = 0;
+		boolean negativ = false;
+		int laufindex = 0;
+		int Potenz = 0;
+		if(InputString[0] == '-')
+		{
+			negativ = true;
+			laufindex++;
+		}
+		for(; InputString[laufindex] != '\n'; laufindex++)
+		{
+			if(negativ)
+			{
+				Potenz = laufindex-1;
+			}
+			zahl = (int) (zahl * Math.pow(10.0, Potenz));
+			switch(InputString[laufindex])
+			{
+			case '0':
+				zahl = zahl;
+				break;
+			case '1':
+				zahl = zahl+1;
+				break;
+			case '2':
+				zahl = zahl+2;
+				break;
+			case '3':
+				zahl = zahl+3;
+				break;
+			case '4':
+				zahl = zahl+4;
+				break;
+			case '5':
+				zahl = zahl+5;
+				break;
+			case '6':
+				zahl = zahl+6;
+				break;
+			case '7':
+				zahl = zahl+7;
+				break;
+			case '8':
+				zahl = zahl+8;
+				break;
+			case '9':
+				zahl = zahl+9;
+				break;
+			default:
+				System.out.println("Fehler in char_array_to_int");
+				break;
+			}
+			if(negativ)
+			{
+				zahl = zahl *(-1);
+			}
+			
+		}
+		
+		return zahl;
+	}
+	
 }

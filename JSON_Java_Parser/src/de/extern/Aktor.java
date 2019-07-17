@@ -93,6 +93,7 @@ public class Aktor {
 		char[][] Liste = new char[5][40];
 		char[] typ = new char[40];
 		char[] wert = new char[40];
+		int Listenplatz = 0;
 		
 		//Erkennen wieviele Kommata im Text überhaupt sind
 		int[] positionen = String_Operationen.Positionen_von_Elementen_in_String(JSON_Input, ',');
@@ -149,38 +150,230 @@ public class Aktor {
 		int i=0;
 		for(j=0; j<positionen[0];) // Der Teil vor dem : wird abgegrast
 		{
-			if((Liste[0][j] != '_') && (Liste[0][j] != ':') && (Liste[0][j] !=  '"') && (Liste[0][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
 			{
-				Zeile[0][i] = Liste[0][j];
+				Zeile[0][i] = Liste[Listenplatz][j];
 				Zeile[0][i+1] = '\n';
 				i++;
 			}
 			j++;
 		}
 		i=0;
-		for(; j<String_Operationen.lenght(Liste[0]);) // Der Teil nach dem : wird abgegrast
+		for(; j<String_Operationen.lenght(Liste[Listenplatz]);) // Der Teil nach dem : wird abgegrast
 		{
-			if((Liste[0][j] != '_') && (Liste[0][j] != ':') && (Liste[0][j] !=  '"') && (Liste[0][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
 			{
-				Zeile[1][i] = Liste[0][j];
+				Zeile[1][i] = Liste[Listenplatz][j];
 				Zeile[1][i+1] = '\n';
 				i++;
 			}
 			j++;
 		}
 		
-		typ = "Topic\n";
-		if(Zeile[0] =  char[]("Topic\n"))    //  'T','o','p','i','c','\n')
+
+		if(Zeile[0] == ("Topic\n").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
 		{
-			
+			Topic = Zeile[1];
+		}
+		else
+		{
+			result++; //Wenn der Rückgabewert != 0 ist, ist ein Fehler bei der Konvertierung aufgetreten
 		}
 		
+		//status speichern
+		Listenplatz++;
+		//Herausfinden wo der Doppelpunkt in der Zeile ist:
+		positionen = String_Operationen.Positionen_von_Elementen_in_String(Liste[Listenplatz], ':');
+		j=0; //Zaehlervariable im Ausgangsstring, die bestimmt welcher Buchstabe grade eingelesen wird
+		h=0; //Bestimmt in welcher Zeile wir von "Zeile" sind (0 oder 1) Zeile[h][0-39]
+		i=0;
+		for(j=0; j<positionen[0];) // Der Teil vor dem : wird abgegrast
+		{
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			{
+				Zeile[0][i] = Liste[Listenplatz][j];
+				Zeile[0][i+1] = '\n';
+				i++;
+			}
+			j++;
+		}
+		i=0;
+		for(; j<String_Operationen.lenght(Liste[Listenplatz]);) // Der Teil nach dem : wird abgegrast
+		{
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			{
+				Zeile[1][i] = Liste[Listenplatz][j];
+				Zeile[1][i+1] = '\n';
+				i++;
+			}
+			j++;
+		}
+		
+
+		if(Zeile[0] == ("status\n").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		{
+			if(Zeile[1] == ("true\n").toCharArray())
+			{
+				status = true;
+			}
+			else
+			{
+				if(Zeile[1] == ("false\n").toCharArray())
+				{
+					status = false;
+				}
+				else
+				{
+					result++;
+				}
+			}
+		}		
+		else
+		{
+			result++; //Wenn der Rückgabewert != 0 ist, ist ein Fehler bei der Konvertierung aufgetreten
+		}
+		
+		//schaltvorgänge speichern
+		Listenplatz++;
+		//Herausfinden wo der Doppelpunkt in der Zeile ist:
+		positionen = String_Operationen.Positionen_von_Elementen_in_String(Liste[Listenplatz], ':');
+		j=0; //Zaehlervariable im Ausgangsstring, die bestimmt welcher Buchstabe grade eingelesen wird
+		h=0; //Bestimmt in welcher Zeile wir von "Zeile" sind (0 oder 1) Zeile[h][0-39]
+		i=0;
+		for(j=0; j<positionen[0];) // Der Teil vor dem : wird abgegrast
+		{
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			{
+				Zeile[0][i] = Liste[Listenplatz][j];
+				Zeile[0][i+1] = '\n';
+				i++;
+			}
+			j++;
+		}
+		i=0;
+		for(; j<String_Operationen.lenght(Liste[Listenplatz]);) // Der Teil nach dem : wird abgegrast
+		{
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			{
+				Zeile[1][i] = Liste[Listenplatz][j];
+				Zeile[1][i+1] = '\n';
+				i++;
+			}
+			j++;
+		}
+		
+
+		if(Zeile[0] == ("schaltvoergaenge\n").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		{
+			Schaltvorgaenge = String_Operationen.char_array_to_int(Zeile[1]);
+		}		
+		else
+		{
+			result++; //Wenn der Rückgabewert != 0 ist, ist ein Fehler bei der Konvertierung aufgetreten
+		}
+		
+		//Adresse speichern
+		Listenplatz++;
+		//Herausfinden wo der Doppelpunkt in der Zeile ist:
+		positionen = String_Operationen.Positionen_von_Elementen_in_String(Liste[Listenplatz], ':');
+		j=0; //Zaehlervariable im Ausgangsstring, die bestimmt welcher Buchstabe grade eingelesen wird
+		h=0; //Bestimmt in welcher Zeile wir von "Zeile" sind (0 oder 1) Zeile[h][0-39]
+		i=0;
+		for(j=0; j<positionen[0];) // Der Teil vor dem : wird abgegrast
+		{
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			{
+				Zeile[0][i] = Liste[Listenplatz][j];
+				Zeile[0][i+1] = '\n';
+				i++;
+			}
+			j++;
+		}
+		i=0;
+		for(; j<String_Operationen.lenght(Liste[Listenplatz]);) // Der Teil nach dem : wird abgegrast
+		{
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			{
+				Zeile[1][i] = Liste[Listenplatz][j];
+				Zeile[1][i+1] = '\n';
+				i++;
+			}
+			j++;
+		}
+		
+
+		if(Zeile[0] == ("Adresse\n").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		{
+			Adresse = String_Operationen.char_array_to_int(Zeile[1]);
+		}		
+		else
+		{
+			result++; //Wenn der Rückgabewert != 0 ist, ist ein Fehler bei der Konvertierung aufgetreten
+		}
+		
+		
+	
+		//toggle_trigger speichern
+		Listenplatz++;
+		//Herausfinden wo der Doppelpunkt in der Zeile ist:
+		positionen = String_Operationen.Positionen_von_Elementen_in_String(Liste[Listenplatz], ':');
+		j=0; //Zaehlervariable im Ausgangsstring, die bestimmt welcher Buchstabe grade eingelesen wird
+		h=0; //Bestimmt in welcher Zeile wir von "Zeile" sind (0 oder 1) Zeile[h][0-39]
+		i=0;
+		for(j=0; j<positionen[0];) // Der Teil vor dem : wird abgegrast
+		{
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			{
+				Zeile[0][i] = Liste[Listenplatz][j];
+				Zeile[0][i+1] = '\n';
+				i++;
+			}
+			j++;
+		}
+		i=0;
+		for(; j<String_Operationen.lenght(Liste[Listenplatz]);) // Der Teil nach dem : wird abgegrast
+		{
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			{
+				Zeile[1][i] = Liste[Listenplatz][j];
+				Zeile[1][i+1] = '\n';
+				i++;
+			}
+			j++;
+		}
+		
+
+		if(Zeile[0] == ("toggle_trigger\n").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		{
+			if(Zeile[1] == ("true\n").toCharArray())
+			{
+				status = true;
+			}
+			else
+			{
+				if(Zeile[1] == ("false\n").toCharArray())
+				{
+					status = false;
+				}
+				else
+				{
+					result++;
+				}
+			}
+		}		
+		else
+		{
+			result++; //Wenn der Rückgabewert != 0 ist, ist ein Fehler bei der Konvertierung aufgetreten
+		}
+
+		
+		
 		//Debugging
-		System.out.println("Debugging:");
+	/*	System.out.println("Debugging:");
 		for(int _i=0; _i<=1; _i++)
 		{
 			System.out.println(Zeile[_i]);
-		}
+		}*/
 		
 	/*	
 		int[] quot_marks_pos = String_Operationen.search_for_next_two_quotation_marks(0, JSON_Input);
@@ -196,6 +389,20 @@ public class Aktor {
 		//Im gutfall eine Rückmeldung geben, dass die Transformation geklappt hat
 		return result;
 	}
+
 	
+	public void Ausgabe_GesammtStatus()
+	{
+		System.out.print("Topic: ");
+		System.out.println(Topic);
+		System.out.print("status: ");
+		System.out.println(status);
+		System.out.print("Schaltvorgaenge: ");
+		System.out.println(Schaltvorgaenge);
+		System.out.print("Adresse: ");
+		System.out.println(Adresse);
+		System.out.print("toggle trigger Status: ");
+		System.out.println(toogle_trigger);
+	}
 
 }

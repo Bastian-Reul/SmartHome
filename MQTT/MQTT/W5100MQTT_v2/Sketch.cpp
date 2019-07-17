@@ -9,7 +9,7 @@
 #include "Pin_ATMEGA328.h"
 #include "Aktor.h"
 #include "../ArduinoCore/include/core/Arduino.h"
-
+#include <stdio.h> 
 
 uint32_t CAN_Buffer[20];
 uint32_t CAN_UID_List[3] = {
