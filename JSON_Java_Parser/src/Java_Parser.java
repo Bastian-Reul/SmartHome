@@ -11,7 +11,7 @@ public class Java_Parser {
 
 		String JSON_string = "\"_Topic\":\"Test/objects/Aktor1\",\"_status\":false,\"_schaltvorgaenge\":2,\"_Adresse\":739,\"_toggle_trigger\":true";
 		char[] JSON_char_Array = JSON_string.toCharArray();
-		String JSON_string_neu = "\"_Topic\":\"Test/objects/Aktor1\",\"_status\":true,\"_schaltvorgaenge\":2,\"_Adresse\":739,\"_toggle_trigger\":true\n";
+		String JSON_string_neu = "\"_Topic\":\"Test/objects/Aktor1\",\"_status\":true,\"_schaltvorgaenge\":2,\"_Adresse\":739,\"_toggle_trigger\":true\0";
 		char[] JSON_char_Array_neu = JSON_string_neu.toCharArray();
 		
 		
@@ -54,7 +54,7 @@ public class Java_Parser {
 		Relais1.Ausgabe_GesammtStatus();
 	/*	System.out.println("Das neue Topic: ");
 		char [] neuer_Topic = Relais1.get_topic();
-		for(int i=0; neuer_Topic[i]!='\n'; i++)
+		for(int i=0; neuer_Topic[i]!='\0'; i++)
 		{
 			System.out.print(neuer_Topic[i]);
 		}*/

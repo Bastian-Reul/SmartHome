@@ -65,7 +65,7 @@ public class Aktor {
 	public char[] get_topic()
 	{
 		//Sicherstellen, dass das Char Array einen Begrenzer hat, dass die Ausgabe des String auf jeden Fall enden lässt
-		//Topic[199] = '\n';
+		//Topic[199] = '\0';
 		return Topic;
 	}
 	
@@ -81,8 +81,8 @@ public class Aktor {
 		"_Topic":"Test/objects/Aktor1","_status":true,"_schaltvorgaenge":2,"Adresse":739,"_toggle_trigger":true
 		wird zu:
 		char Liste[5][40]
-		[0]['"','_','T','o','p','i','c','"',':','"','T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','"','\n']
-		[1]['"','_','s','t','a','t','u','s','"',':','t','r','u','e','\n']
+		[0]['"','_','T','o','p','i','c','"',':','"','T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','"','\0']
+		[1]['"','_','s','t','a','t','u','s','"',':','t','r','u','e','\0']
 		[2]....
 		[3]....
 		[4]....
@@ -115,7 +115,7 @@ public class Aktor {
 			for(h=0; (j<positionen[i])&&(j<laenge_JSON_String); h++)
 			{
 				Liste[i][h] = JSON_Input[j];
-				Liste[i][h+1] = '\n';
+				Liste[i][h+1] = '\0';
 				j++;
 			}
 			j++;
@@ -129,12 +129,12 @@ public class Aktor {
 		 * Danach wird genauso mit der nächsten Zeile aus char Liste[5][40] verfahren. Dafür kann dann wieder das gleiche char Zeile[2][40]
 		 * benutzt werden um Speicherplatz zu sparen
 		 * 		char Liste[5][40]
-				[0]['"','_','T','o','p','i','c','"',':','"','T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','"','\n']
-				[1]['"','_','s','t','a','t','u','s','"',':','t','r','u','e','\n']
+				[0]['"','_','T','o','p','i','c','"',':','"','T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','"','\0']
+				[1]['"','_','s','t','a','t','u','s','"',':','t','r','u','e','\0']
 				 wird zu:
 				char Zeile[2][40]
-				[0]['_','T','o','p','i','c','\n']
-				[1]['T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','\n']
+				[0]['_','T','o','p','i','c','\0']
+				[1]['T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','\0']
 				
 				und wird dann abgespeichert
 				Topic = Zeile[1];
@@ -150,10 +150,10 @@ public class Aktor {
 		int i=0;
 		for(j=0; j<positionen[0];) // Der Teil vor dem : wird abgegrast
 		{
-			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\0'))
 			{
 				Zeile[0][i] = Liste[Listenplatz][j];
-				Zeile[0][i+1] = '\n';
+				Zeile[0][i+1] = '\0';
 				i++;
 			}
 			j++;
@@ -161,17 +161,17 @@ public class Aktor {
 		i=0;
 		for(; j<String_Operationen.lenght(Liste[Listenplatz]);) // Der Teil nach dem : wird abgegrast
 		{
-			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\0'))
 			{
 				Zeile[1][i] = Liste[Listenplatz][j];
-				Zeile[1][i+1] = '\n';
+				Zeile[1][i+1] = '\0';
 				i++;
 			}
 			j++;
 		}
 		
 
-		if(Zeile[0] == ("Topic\n").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		if(Zeile[0] == ("Topic\0").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
 		{
 			Topic = Zeile[1];
 		}
@@ -189,10 +189,10 @@ public class Aktor {
 		i=0;
 		for(j=0; j<positionen[0];) // Der Teil vor dem : wird abgegrast
 		{
-			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\0'))
 			{
 				Zeile[0][i] = Liste[Listenplatz][j];
-				Zeile[0][i+1] = '\n';
+				Zeile[0][i+1] = '\0';
 				i++;
 			}
 			j++;
@@ -200,25 +200,25 @@ public class Aktor {
 		i=0;
 		for(; j<String_Operationen.lenght(Liste[Listenplatz]);) // Der Teil nach dem : wird abgegrast
 		{
-			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\0'))
 			{
 				Zeile[1][i] = Liste[Listenplatz][j];
-				Zeile[1][i+1] = '\n';
+				Zeile[1][i+1] = '\0';
 				i++;
 			}
 			j++;
 		}
 		
 
-		if(Zeile[0] == ("status\n").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		if(Zeile[0] == ("status\0").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
 		{
-			if(Zeile[1] == ("true\n").toCharArray())
+			if(Zeile[1] == ("true\0").toCharArray())
 			{
 				status = true;
 			}
 			else
 			{
-				if(Zeile[1] == ("false\n").toCharArray())
+				if(Zeile[1] == ("false\0").toCharArray())
 				{
 					status = false;
 				}
@@ -242,10 +242,10 @@ public class Aktor {
 		i=0;
 		for(j=0; j<positionen[0];) // Der Teil vor dem : wird abgegrast
 		{
-			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\0'))
 			{
 				Zeile[0][i] = Liste[Listenplatz][j];
-				Zeile[0][i+1] = '\n';
+				Zeile[0][i+1] = '\0';
 				i++;
 			}
 			j++;
@@ -253,17 +253,17 @@ public class Aktor {
 		i=0;
 		for(; j<String_Operationen.lenght(Liste[Listenplatz]);) // Der Teil nach dem : wird abgegrast
 		{
-			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\0'))
 			{
 				Zeile[1][i] = Liste[Listenplatz][j];
-				Zeile[1][i+1] = '\n';
+				Zeile[1][i+1] = '\0';
 				i++;
 			}
 			j++;
 		}
 		
 
-		if(Zeile[0] == ("schaltvoergaenge\n").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		if(Zeile[0] == ("schaltvoergaenge\0").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
 		{
 			Schaltvorgaenge = String_Operationen.char_array_to_int(Zeile[1]);
 		}		
@@ -281,10 +281,10 @@ public class Aktor {
 		i=0;
 		for(j=0; j<positionen[0];) // Der Teil vor dem : wird abgegrast
 		{
-			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\0'))
 			{
 				Zeile[0][i] = Liste[Listenplatz][j];
-				Zeile[0][i+1] = '\n';
+				Zeile[0][i+1] = '\0';
 				i++;
 			}
 			j++;
@@ -292,17 +292,17 @@ public class Aktor {
 		i=0;
 		for(; j<String_Operationen.lenght(Liste[Listenplatz]);) // Der Teil nach dem : wird abgegrast
 		{
-			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\0'))
 			{
 				Zeile[1][i] = Liste[Listenplatz][j];
-				Zeile[1][i+1] = '\n';
+				Zeile[1][i+1] = '\0';
 				i++;
 			}
 			j++;
 		}
 		
 
-		if(Zeile[0] == ("Adresse\n").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		if(Zeile[0] == ("Adresse\0").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
 		{
 			Adresse = String_Operationen.char_array_to_int(Zeile[1]);
 		}		
@@ -322,10 +322,10 @@ public class Aktor {
 		i=0;
 		for(j=0; j<positionen[0];) // Der Teil vor dem : wird abgegrast
 		{
-			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\0'))
 			{
 				Zeile[0][i] = Liste[Listenplatz][j];
-				Zeile[0][i+1] = '\n';
+				Zeile[0][i+1] = '\0';
 				i++;
 			}
 			j++;
@@ -333,25 +333,25 @@ public class Aktor {
 		i=0;
 		for(; j<String_Operationen.lenght(Liste[Listenplatz]);) // Der Teil nach dem : wird abgegrast
 		{
-			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\n'))
+			if((Liste[Listenplatz][j] != '_') && (Liste[Listenplatz][j] != ':') && (Liste[Listenplatz][j] !=  '"') && (Liste[Listenplatz][j] !=  '\0'))
 			{
 				Zeile[1][i] = Liste[Listenplatz][j];
-				Zeile[1][i+1] = '\n';
+				Zeile[1][i+1] = '\0';
 				i++;
 			}
 			j++;
 		}
 		
 
-		if(Zeile[0] == ("toggle_trigger\n").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		if(Zeile[0] == ("toggle_trigger\0").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
 		{
-			if(Zeile[1] == ("true\n").toCharArray())
+			if(Zeile[1] == ("true\0").toCharArray())
 			{
 				status = true;
 			}
 			else
 			{
-				if(Zeile[1] == ("false\n").toCharArray())
+				if(Zeile[1] == ("false\0").toCharArray())
 				{
 					status = false;
 				}
@@ -380,9 +380,9 @@ public class Aktor {
 		for(int i=0; i<(quot_marks_pos[1]-quot_marks_pos[0]-1); i++)
 		{
 			Param[0][i] = Topic[i+quot_marks_pos[0]+1];
-			Param[0][i+1] = '\n';
+			Param[0][i+1] = '\0';
 		}
-		for(int i=0; Param[0][i]!='\n'; i++)
+		for(int i=0; Param[0][i]!='\0'; i++)
 		{
 			System.out.print(Param[0][i]);
 		}*/
