@@ -81,15 +81,18 @@ public class Aktor {
 		"_Topic":"Test/objects/Aktor1","_status":true,"_schaltvorgaenge":2,"Adresse":739,"_toggle_trigger":true
 		wird zu:
 		char Liste[5][40]
-		[0]['"','_','T','o','p','i','c','"',':','"','T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','"']
-		[1]['"','_','s','t','a','t','u','s','"',':','t','r','u','e']
+		[0]['"','_','T','o','p','i','c','"',':','"','T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','"','\n']
+		[1]['"','_','s','t','a','t','u','s','"',':','t','r','u','e','\n']
 		[2]....
 		[3]....
 		[4]....
 		*/
+		int result = 0;
 		System.out.println("JSON_2_Aktor:");
 
 		char[][] Liste = new char[5][40];
+		char[] typ = new char[40];
+		char[] wert = new char[40];
 		
 		//Erkennen wieviele Kommata im Text überhaupt sind
 		int[] positionen = String_Operationen.Positionen_von_Elementen_in_String(JSON_Input, ',');
@@ -102,7 +105,7 @@ public class Aktor {
 			}
 		}
 		
-		//im Bezug zum letzten Trennzeichen
+
 		int j=0; //j bestimmt an welcher Position wir im Ausgangsstring sind
 		int h=0; //h bestimmt an welcher Position Position wir in der aktuellen Zeile der Liste sind Liste[0-4][h]
 		int laenge_JSON_String = String_Operationen.lenght(JSON_Input);
@@ -116,11 +119,67 @@ public class Aktor {
 			}
 			j++;
 		}
+		//Ende erster Teil 
+		
+		//Anfang zweiter Teil
+		/*Im zweiten Teil wird die char Liste[5][40] Zeile für Zeile durchgearbeitet
+		 * Um Speicherplatz zu sparen, wird jedoch eine Zeile ausgelesen, am Doppelpunkt in zwei Char Arrays (char Zeile[2][40])
+		 * gespeichert, beschnitten (Anführungszeichen heraus, etc) und dann in den entsprechenden Aktor Parameter abgespeichert
+		 * Danach wird genauso mit der nächsten Zeile aus char Liste[5][40] verfahren. Dafür kann dann wieder das gleiche char Zeile[2][40]
+		 * benutzt werden um Speicherplatz zu sparen
+		 * 		char Liste[5][40]
+				[0]['"','_','T','o','p','i','c','"',':','"','T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','"','\n']
+				[1]['"','_','s','t','a','t','u','s','"',':','t','r','u','e','\n']
+				 wird zu:
+				char Zeile[2][40]
+				[0]['_','T','o','p','i','c','\n']
+				[1]['T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','\n']
+				
+				und wird dann abgespeichert
+				Topic = Zeile[1];
+		 */
+		
+		char[][] Zeile = new char[2][40];
+		
+		//Topic speichern
+		//Herausfinden wo der Doppelpunkt in der Zeile ist:
+		positionen = String_Operationen.Positionen_von_Elementen_in_String(Liste[0], ':');
+		j=0; //Zaehlervariable im Ausgangsstring, die bestimmt welcher Buchstabe grade eingelesen wird
+		h=0; //Bestimmt in welcher Zeile wir von "Zeile" sind (0 oder 1) Zeile[h][0-39]
+		int i=0;
+		for(j=0; j<positionen[0];) // Der Teil vor dem : wird abgegrast
+		{
+			if((Liste[0][j] != '_') && (Liste[0][j] != ':') && (Liste[0][j] !=  '"') && (Liste[0][j] !=  '\n'))
+			{
+				Zeile[0][i] = Liste[0][j];
+				Zeile[0][i+1] = '\n';
+				i++;
+			}
+			j++;
+		}
+		i=0;
+		for(; j<String_Operationen.lenght(Liste[0]);) // Der Teil nach dem : wird abgegrast
+		{
+			if((Liste[0][j] != '_') && (Liste[0][j] != ':') && (Liste[0][j] !=  '"') && (Liste[0][j] !=  '\n'))
+			{
+				Zeile[1][i] = Liste[0][j];
+				Zeile[1][i+1] = '\n';
+				i++;
+			}
+			j++;
+		}
+		
+		typ = "Topic\n";
+		if(Zeile[0] =  char[]("Topic\n"))    //  'T','o','p','i','c','\n')
+		{
+			
+		}
 		
 		//Debugging
-		for(int i=0; i<=anzahl_Positionen; i++)
+		System.out.println("Debugging:");
+		for(int _i=0; _i<=1; _i++)
 		{
-			System.out.println(Liste[i]);
+			System.out.println(Zeile[_i]);
 		}
 		
 	/*	
@@ -135,7 +194,7 @@ public class Aktor {
 			System.out.print(Param[0][i]);
 		}*/
 		//Im gutfall eine Rückmeldung geben, dass die Transformation geklappt hat
-		return 0;
+		return result;
 	}
 	
 
