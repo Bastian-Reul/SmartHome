@@ -11,7 +11,7 @@ public class Java_Parser {
 
 		String JSON_string = "\"_Topic\":\"Test/objects/Aktor1\",\"_status\":false,\"_schaltvorgaenge\":2,\"_Adresse\":739,\"_toggle_trigger\":true";
 		char[] JSON_char_Array = JSON_string.toCharArray();
-		String JSON_string_neu = "\"_Topic\":\"Test/objects/Aktor1\",\"_status\":true,\"_schaltvorgaenge\":2,\"_Adresse\":739,\"_toggle_trigger\":true\0";
+		String JSON_string_neu = "\"_Topic\":\"Test/objects/Aktor1\",\"_status\":true,\"_schaltvorgaenge\":2,\"_Adresse\":739,\"_toggletrigger\":true\0";
 		char[] JSON_char_Array_neu = JSON_string_neu.toCharArray();
 		
 		

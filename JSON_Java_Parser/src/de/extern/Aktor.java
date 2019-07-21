@@ -11,7 +11,7 @@ public class Aktor {
 	boolean status = false;
 	int Schaltvorgaenge = 0;
 	int Adresse = 0;
-	boolean toogle_trigger = false; 
+	boolean toogletrigger = false; 
 	
 	public void schalte_ein()
 	{
@@ -170,8 +170,12 @@ public class Aktor {
 			j++;
 		}
 		
-
-		if(Zeile[0] == ("Topic\0").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		//Java Spezifisch (hoffentlich)
+		
+		
+		
+		//if(Zeile[0] == ("Topic").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		if(String_Operationen.Compare_Char_Arrays(Zeile[0], ("Topic").toCharArray()))
 		{
 			Topic = Zeile[1];
 		}
@@ -210,15 +214,15 @@ public class Aktor {
 		}
 		
 
-		if(Zeile[0] == ("status\0").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		if(String_Operationen.Compare_Char_Arrays(Zeile[0], ("status").toCharArray()))   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
 		{
-			if(Zeile[1] == ("true\0").toCharArray())
+			if(String_Operationen.Compare_Char_Arrays(Zeile[1], ("true").toCharArray()))
 			{
 				status = true;
 			}
 			else
 			{
-				if(Zeile[1] == ("false\0").toCharArray())
+				if(String_Operationen.Compare_Char_Arrays(Zeile[1], ("false").toCharArray()))
 				{
 					status = false;
 				}
@@ -263,7 +267,7 @@ public class Aktor {
 		}
 		
 
-		if(Zeile[0] == ("schaltvoergaenge\0").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		if(String_Operationen.Compare_Char_Arrays(Zeile[0], ("schaltvorgaenge").toCharArray()))   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
 		{
 			Schaltvorgaenge = String_Operationen.char_array_to_int(Zeile[1]);
 		}		
@@ -302,7 +306,7 @@ public class Aktor {
 		}
 		
 
-		if(Zeile[0] == ("Adresse\0").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		if(String_Operationen.Compare_Char_Arrays(Zeile[0], ("Adresse").toCharArray()))   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
 		{
 			Adresse = String_Operationen.char_array_to_int(Zeile[1]);
 		}		
@@ -343,15 +347,15 @@ public class Aktor {
 		}
 		
 
-		if(Zeile[0] == ("toggle_trigger\0").toCharArray())   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
+		if(String_Operationen.Compare_Char_Arrays(Zeile[0], ("toggletrigger").toCharArray()))   //Es muss die String Methode toCharArray() benutzt werden, da ich in Java kein Char Array einfach so Hardgecodet schreiben kann
 		{
-			if(Zeile[1] == ("true\0").toCharArray())
+			if(String_Operationen.Compare_Char_Arrays(Zeile[1], ("true").toCharArray()))
 			{
 				status = true;
 			}
 			else
 			{
-				if(Zeile[1] == ("false\0").toCharArray())
+				if(String_Operationen.Compare_Char_Arrays(Zeile[1], ("false").toCharArray()))
 				{
 					status = false;
 				}
@@ -402,7 +406,7 @@ public class Aktor {
 		System.out.print("Adresse: ");
 		System.out.println(Adresse);
 		System.out.print("toggle trigger Status: ");
-		System.out.println(toogle_trigger);
+		System.out.println(toogletrigger);
 	}
 
 }
