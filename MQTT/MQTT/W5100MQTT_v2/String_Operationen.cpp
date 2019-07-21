@@ -13,7 +13,7 @@ String_Operationen::String_Operationen()
 {
 } //String_Operationen
 
-	public static int[] search_for_next_two_quotation_marks(int start_position, char[] String2searchFor)
+	int[] String_Operationen::search_for_next_two_quotation_marks(int start_position, char[] String2searchFor)
 	{
 		int[] quotation_mark_position = { 0 , 0};
 		int j=0;
@@ -32,7 +32,7 @@ String_Operationen::String_Operationen()
 		return quotation_mark_position;
 	}
 	
-	public static char[] String_between_quotation_marks(char[] String_with_2quot_marks)
+	char[] String_Operationen::String_between_quotation_marks(char[] String_with_2quot_marks)
 	{
 		char[] Param = new char[30];
 		int[] quot_marks_pos = search_for_next_two_quotation_marks(0, String_with_2quot_marks);
@@ -45,7 +45,7 @@ String_Operationen::String_Operationen()
 		return Param;
 	}
 	
-	public static int[] Positionen_von_Elementen_in_String(char[] InputString, char Character_to_search_for)
+	static int[] String_Operationen::Positionen_von_Elementen_in_String(char[] InputString, char Character_to_search_for)
 	{
 		int[] Positionen = {999, 999, 999, 999, 999, 999, 999, 999, 999, 999};
 		int i=0;
@@ -64,7 +64,7 @@ String_Operationen::String_Operationen()
 	}
 	
 	//gibt die Länge eines Strings zurück
-	public static int lenght(char[] InputString)
+	int String_Operationen::lenght(char[] InputString)
 	{
 		int i=0;
 		while(InputString[i]!='\0')
@@ -74,14 +74,14 @@ String_Operationen::String_Operationen()
 		return i;
 	}
 	
-	public static char[] String_to_Char_Array(String eingabestring)
+	char[] String_Operationen::String_to_Char_Array(String eingabestring)
 	{
 		char[] AusgabeArray = new char[40];
 		AusgabeArray= eingabestring.toCharArray();	
 		return AusgabeArray;
 	}
 	
-	public static int char_array_to_int(char[] InputString)
+	int String_Operationen::char_array_to_int(char[] InputString)
 	{
 		int zahl = 0;
 		boolean negativ = false;
@@ -145,7 +145,7 @@ String_Operationen::String_Operationen()
 	
 	//Hoffentlich eine Java Spezifische Methode um zwei Char Arrays gleichen Inhalts, aber unterschiedlicher Länge zu vergleichen
 	//Gibt true zurück, wenn zwei Char Arrays die gleichen "druckbaren" Zeichen enthalten, aber sich in der Länge der angehängten freien Stellen unterscheiden
-	public static boolean Compare_Char_Arrays(char[] String_1, char[] String_2)
+	boolean String_Operationen::Compare_Char_Arrays(char[] String_1, char[] String_2)
 	{
 		boolean ist_gleich = true;
 		for(int i=0; ((ist_gleich && (int)String_1[i]>32) && ((int)String_2[i]>32) && ((int)String_1[i]<127) && ((int)String_2[i]<127)); i++) //Damit liegen die beiden aktuell geprüften Zeichen im Bereich der normalen Buchstaben und Zeichen
