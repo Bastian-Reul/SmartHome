@@ -2,7 +2,6 @@
 #include <SPI.h>
 #include <Ethernet.h>
 #include <PubSubClient.h>
-#include <ArduinoJson.h>
 #include "CAN.h"
 #include "src/account_Labor.h"
 #include "Hausbus.h"
@@ -36,9 +35,8 @@ uint32_t CAN_UID_List[3] = {
 
 };
 
-char testinput[] =	{"\"_Topic\":\"Test/objects/Aktor1\",\"_status\":false,\"_schaltvorgaenge\":2,\"Adresse\":739,\"_toggle_trigger\":true"};
+char testinput[] =	{"\"_Topic\":\"Test/objects/Aktor1\",\"_status\":false,\"_schaltvorgaenge\":2,\"Adresse\":739,\"_toggletrigger\":true"};
 	
-	StaticJsonDocument<120> doc;
 		Aktor Aktor1;
 
 
@@ -71,26 +69,13 @@ void callback(char* topic, byte* payload, unsigned int length) {
 		Serial.print((char)payload[i]);
 	}
 	
-	//116 laut Rechner
-	//		StaticJsonDocument<116> doc;
-	
-	//deserializeJson(doc, payload);
-	deserializeJson(doc, testinput);
-	
-	 const char* _Topic;
-	 _Topic = doc["_Topic"];
-	 
-	    //Aktor1._Topic = doc["_Topic"];
-	    Aktor1._status = doc["_status"];
-	    Aktor1._schaltvorgaenge = doc["_schaltvorgaenge"];
-	    Aktor1._toggle_trigger = doc["_toggle_trigger"];
-	    Aktor1.Adresse = doc["Adresse"];
+	Aktor1.JSON_2_Aktor((char)payload);
 	
 	//if((char)payload[0] == '1')
 	
 
 	
-	if(Aktor1._toggle_trigger)
+	if(Aktor1._toggletrigger)
 	{
 		//wenn in Erdgeschoss/Wohnzimmer/Deckenlicht eine 1 steht, dann per CAN das Kommando für Licht einschalten senden
 		Serial.println("Licht wird angeschaltet");

@@ -18,5 +18,7 @@ src\libraries\CAN\src\MCP2515.cpp
 
 src\libraries\SPI\src\SPI.cpp
 
+String_Operationen.cpp
+
 Taster.cpp
 

@@ -9,6 +9,7 @@
 #ifndef __AKTOR_H__
 #define __AKTOR_H__
 
+#include "String_Operationen.h"
 
 class Aktor
 {
@@ -17,7 +18,7 @@ public:
 	const char *_Topic;
 	bool _status = false;
 	int _schaltvorgaenge = 0;
-	bool _toggle_trigger = false;
+	bool _toggletrigger = false;
 	int Adresse = 739;
 protected:
 private:
@@ -25,6 +26,7 @@ private:
 //functions
 public:
 	Aktor();
+	int JSON_2_Aktor(char[] JSON_Input);
 	~Aktor();
 protected:
 private:

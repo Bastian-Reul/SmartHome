@@ -73,6 +73,7 @@ C_SRCS +=  \
 ../src/libraries/CAN/src/CANController.cpp \
 ../src/libraries/CAN/src/MCP2515.cpp \
 ../src/libraries/SPI/src/SPI.cpp \
+../String_Operationen.cpp \
 ../Taster.cpp
 
 
@@ -91,6 +92,7 @@ Sketch.o \
 src/libraries/CAN/src/CANController.o \
 src/libraries/CAN/src/MCP2515.o \
 src/libraries/SPI/src/SPI.o \
+String_Operationen.o \
 Taster.o
 
 OBJS_AS_ARGS +=  \
@@ -102,6 +104,7 @@ Sketch.o \
 src/libraries/CAN/src/CANController.o \
 src/libraries/CAN/src/MCP2515.o \
 src/libraries/SPI/src/SPI.o \
+String_Operationen.o \
 Taster.o
 
 C_DEPS +=  \
@@ -113,6 +116,7 @@ Sketch.d \
 src/libraries/CAN/src/CANController.d \
 src/libraries/CAN/src/MCP2515.d \
 src/libraries/SPI/src/SPI.d \
+String_Operationen.d \
 Taster.d
 
 C_DEPS_AS_ARGS +=  \
@@ -124,6 +128,7 @@ Sketch.d \
 src/libraries/CAN/src/CANController.d \
 src/libraries/CAN/src/MCP2515.d \
 src/libraries/SPI/src/SPI.d \
+String_Operationen.d \
 Taster.d
 
 OUTPUT_FILE_PATH +=W5100MQTT_v2.elf
@@ -191,6 +196,13 @@ src/libraries/CAN/src/MCP2515.o: ../src/libraries/CAN/src/MCP2515.cpp
 	
 
 src/libraries/SPI/src/SPI.o: ../src/libraries/SPI/src/SPI.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson" -I"../src/libraries/ArduinoJson" -I"../src/libraries"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./String_Operationen.o: .././String_Operationen.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000L -DARDUINO= -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -DUSB_VID=0x2341 -DUSB_PID=0x0043 -DUSB_MANUFACTURER="\"Arduino LLC\""  -I"..\\..\ArduinoCore\include" -I"..\\..\ArduinoCore\include\core" -I"..\\..\ArduinoCore\include\variants\standard" -I"../../../../../../Arduino/libraries/Ethernet/src" -I"..\include\libraries\SPI\src" -I"C:\Users\Bastian Reul\Documents\Arduino\libraries\CAN\src" -I".." -I"../include/libraries/CAN/src" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../../../../../../../../../../Program Files (x86)/Arduino/libraries/Ethernet/src" -I"..\include\libraries\Arduino_JSON\src" -I"..\include\libraries\Arduino_JSON\src\cjson" -I"../src/libraries/ArduinoJson" -I"../src/libraries"  -Os -fno-threadsafe-statics -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -w -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu++11 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

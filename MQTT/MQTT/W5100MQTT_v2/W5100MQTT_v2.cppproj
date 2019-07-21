@@ -394,6 +394,12 @@
     <Compile Include="src\libraries\SPI\src\SPI.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="String_Operationen.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="String_Operationen.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Taster.cpp">
       <SubType>compile</SubType>
     </Compile>
