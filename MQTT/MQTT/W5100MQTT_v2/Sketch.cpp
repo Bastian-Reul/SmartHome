@@ -9,6 +9,7 @@
 #include "Aktor.h"
 #include "../ArduinoCore/include/core/Arduino.h"
 #include <stdio.h> 
+#include "src/account_Labor.h"
 
 uint32_t CAN_Buffer[20];
 uint32_t CAN_UID_List[3] = {
@@ -69,7 +70,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 		Serial.print((char)payload[i]);
 	}
 	
-	Aktor1.JSON_2_Aktor((char)payload);
+	Aktor1.JSON_2_Aktor((char*)payload);
 	
 	//if((char)payload[0] == '1')
 	

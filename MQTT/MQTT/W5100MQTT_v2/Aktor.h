@@ -26,7 +26,7 @@ private:
 //functions
 public:
 	Aktor();
-	int JSON_2_Aktor(char[] JSON_Input);
+	int JSON_2_Aktor(char* JSON_Input);
 	~Aktor();
 protected:
 private:
