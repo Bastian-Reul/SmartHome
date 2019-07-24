@@ -65,15 +65,12 @@ char testinput[] =	{"\"_Topic\":\"Test/objects/Aktor1\",\"_status\":false,\"_sch
 void callback(char* topic, byte* payload, unsigned int length) {
 	payload[length] = '\0';
 	Serial.print("Message arrived [");
-	for (int i=0;String_Operationen::is_printable_sign((char)topic[i]);i++) 
-	{
-		Serial.print((char)topic[i]);
-	}
+	Serial.print(topic);
 	Serial.print("] ");
 	for (int i=0;i<length;i++) {
 		Serial.print((char)payload[i]);
 	}
-	/*Serial.println("JSON_2_Aktor wird aufgerufen:");
+	Serial.println("JSON_2_Aktor wird aufgerufen:");
 	if (Aktor1.JSON_2_Aktor((char*)payload))
 	{
 		Serial.println("ungueltiger JSON Code");
@@ -82,26 +79,22 @@ void callback(char* topic, byte* payload, unsigned int length) {
 	{
 		if(Aktor1._toggletrigger)
 		{
-			Serial.println("Licht wird angeschaltet");
+			Serial.println("Licht wird getoggelt");
 			CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
 			CAN.write(Kommando_Licht_toggle);
 			CAN.endPacket();
+			Aktor1._toggletrigger = false;
 		}
 		else
 		{
-			Serial.println("Licht wird ausgeschaltet");
-			CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
+			Serial.println("Licht bleibt im alten Status");
+		/*	CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
 			CAN.write(Kommando_Licht_aus);
-			CAN.endPacket();
+			CAN.endPacket();*/
 		}
 	}
 
-	
-*/
-	
-
-
-	Serial.println();
+	Serial.println("...warte...");
 
 }
 
@@ -113,7 +106,7 @@ void reconnect() {
 	while (!mqttClient.connected()) {
 		Serial.print("Attempting MQTT connection...");
 		// Attempt to connect
-		if (mqttClient.connect("8e69f9bb7e094f2893d1b9a529af0baa", mqtt_user, mqtt_password)) {
+		if (mqttClient.connect("8e69f9bf0bac", mqtt_user, mqtt_password)) {
 			Serial.println("connected");
 			// Once connected, publish an announcement...
 			mqttClient.publish("outTopic","toggle");
