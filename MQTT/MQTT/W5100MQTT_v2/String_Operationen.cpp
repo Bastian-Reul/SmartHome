@@ -170,3 +170,16 @@ int String_Operationen::char_array_to_int(char* InputString)
 }
 
 
+//gibt true zurück wenn das übergebene Zeichen ein "druckbares" Zeichen ist (Kein \0, CR oder ähnliches)
+bool String_Operationen::is_printable_sign(char testzeichen)
+{
+	if((32 < testzeichen)&&(testzeichen < 127))
+	{
+		return true;
+	} 
+	else
+	{
+		return false;
+	}
+	
+}

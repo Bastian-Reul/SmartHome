@@ -27,6 +27,7 @@ public:
 		static int char_array_to_int(char* InputString);
 		static bool Compare_Char_Arrays(char* String_1, char* String_2);
 		static void write_short_into_long_string(char* ziel, char* quelle);
+		static bool is_printable_sign(char testzeichen);
 		
 	~String_Operationen();
 protected:

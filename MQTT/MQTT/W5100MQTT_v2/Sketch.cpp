@@ -63,35 +63,43 @@ char testinput[] =	{"\"_Topic\":\"Test/objects/Aktor1\",\"_status\":false,\"_sch
 			
 
 void callback(char* topic, byte* payload, unsigned int length) {
+	payload[length] = '\0';
 	Serial.print("Message arrived [");
-	Serial.print(topic);
+	for (int i=0;String_Operationen::is_printable_sign((char)topic[i]);i++) 
+	{
+		Serial.print((char)topic[i]);
+	}
 	Serial.print("] ");
 	for (int i=0;i<length;i++) {
 		Serial.print((char)payload[i]);
 	}
-	
-	Aktor1.JSON_2_Aktor((char*)payload);
-	
-	//if((char)payload[0] == '1')
-	
-
-	
-	if(Aktor1._toggletrigger)
+	/*Serial.println("JSON_2_Aktor wird aufgerufen:");
+	if (Aktor1.JSON_2_Aktor((char*)payload))
 	{
-		//wenn in Erdgeschoss/Wohnzimmer/Deckenlicht eine 1 steht, dann per CAN das Kommando für Licht einschalten senden
-		Serial.println("Licht wird angeschaltet");
-		CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
-		CAN.write(Kommando_Licht_toggle);
-		CAN.endPacket();
-	}
+		Serial.println("ungueltiger JSON Code");
+	} 
 	else
 	{
-		//wenn in Erdgeschoss/Wohnzimmer/Deckenlicht etwas anderes steht, dann per CAN das Kommando für Licht ausschalten senden
-		Serial.println("Licht wird ausgeschaltet");
-		CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
-		CAN.write(Kommando_Licht_aus);
-		CAN.endPacket();		
+		if(Aktor1._toggletrigger)
+		{
+			Serial.println("Licht wird angeschaltet");
+			CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
+			CAN.write(Kommando_Licht_toggle);
+			CAN.endPacket();
+		}
+		else
+		{
+			Serial.println("Licht wird ausgeschaltet");
+			CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
+			CAN.write(Kommando_Licht_aus);
+			CAN.endPacket();
+		}
 	}
+
+	
+*/
+	
+
 
 	Serial.println();
 
@@ -105,13 +113,13 @@ void reconnect() {
 	while (!mqttClient.connected()) {
 		Serial.print("Attempting MQTT connection...");
 		// Attempt to connect
-		if (mqttClient.connect("hfuigf87e", mqtt_user, mqtt_password)) {
+		if (mqttClient.connect("8e69f9bb7e094f2893d1b9a529af0baa", mqtt_user, mqtt_password)) {
 			Serial.println("connected");
 			// Once connected, publish an announcement...
 			mqttClient.publish("outTopic","toggle");
 			// ... and resubscribe
-			mqttClient.subscribe("Erdgeschoss/Wohnzimmer/Deckenlicht");
-			//mqttClient.subscribe("Test/objects/Aktor1");
+			//mqttClient.subscribe("Erdgeschoss/Wohnzimmer/Deckenlicht");
+			mqttClient.subscribe("Test/objects/Aktor1");
 			} else {
 			Serial.print("failed, rc=");
 			Serial.print(mqttClient.state());
