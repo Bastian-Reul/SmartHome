@@ -103,7 +103,7 @@ void String_Operationen::write_short_into_long_string(char* ziel, char* quelle)
 	for (int i = 0; i < lenght(quelle); i++)
 	{
 		ziel[i] = quelle[i];
-		ziel[i] = '\0';
+		ziel[i+1] = '\0';
 	}
 }
 

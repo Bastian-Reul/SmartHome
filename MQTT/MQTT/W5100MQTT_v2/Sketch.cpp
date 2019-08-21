@@ -80,9 +80,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
 		if(Aktor1._toggletrigger)
 		{
 			Serial.println("Licht wird getoggelt");
-			CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
-			CAN.write(Kommando_Licht_toggle);
-			CAN.endPacket();
+			//CAN.beginExtendedPacket(ID_01_Keller_1_Bastelkeller_Licht);
+			//CAN.write(Kommando_Licht_toggle);
+			//CAN.endPacket();
 			Aktor1._toggletrigger = false;
 		}
 		else
