@@ -20,7 +20,7 @@ int Aktor::JSON_2_Aktor(char* JSON_Input)
 {
 	/*Im ersten Teil wird der JSON String an dem Kommata aufgeteilt, so dass die Parameter getrennt voneinander, jedoch mit ihren
 	Bezeichner in einem String stehen:
-	"_Topic":"Test/objects/Aktor1","_status":true,"Adresse":739,"_toggle":true
+	"_Topic":"Test/objects/Aktor1","_status":true,"_Adresse":739,"_toggle":true
 	wird zu:
 	char Liste[5][40]
 	[0]['"','_','T','o','p','i','c','"',':','"','T','e','s','t','/','o','b','j','e','c','t','s','/','A','k','t','o','r','1','"','\0']

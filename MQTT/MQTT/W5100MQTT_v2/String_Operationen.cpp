@@ -81,21 +81,45 @@ int String_Operationen::lenght(char* InputString)
 //boolean String_Operationen::Compare_Char_Arrays(char[] String_1, char[] String_2)
 bool String_Operationen::Compare_Char_Arrays(char* String_1, char* String_2)
 {
-	bool ist_gleich = true;
-	for (int i = 0; ((ist_gleich && (int)String_1[i] > 32) && ((int)String_2[i] > 32) && ((int)String_1[i] < 127) && ((int)String_2[i] < 127)); i++) //Damit liegen die beiden aktuell geprüften Zeichen im Bereich der normalen Buchstaben und Zeichen
+	int i = 0;
+	int mismatch = 0;
+	for (i = 0; i < 50; i++) //i<50 verhindert, dass der Vergleich Amok läuft
 	{
-		if (String_1[i] == String_2[i])
+		if ((String_1[i] != '\0') && (String_2[i] != '\0'))
 		{
-			ist_gleich = true;
+			if (is_printable_sign(String_1[i]) && is_printable_sign(String_2[i]))
+			{
+				if (String_1[i]==String_2[i])
+				{
+					//alles gut
+				}
+				else
+				{
+					//Die Beiden druckbaren Zeichen unterscheiden sich
+					mismatch++;
+				}
+			}
+			else  //Der String enthaelt nicht druckbare Zeichen
+			{
+				mismatch++;
+			}
 		}
-		else
+		else //mindestens ein Zeichen ist '\0'
 		{
-			ist_gleich = false;
+			if (String_1[i] != String_2[i]) //nur ein Zeichen ist '\0'
+			{
+				mismatch++;
+			}
+			else //Beide Strings sind an ihrem Ende angekommen
+			{
+				if (mismatch <=0)
+				{
+					return true; //Beide Strings sind identisch, springe raus
+				}
+			}
 		}
 	}
-
-
-	return ist_gleich;
+	return false; //Es gab mindestens einen Unterschied zwischen den beiden Strings
 }
 
 void String_Operationen::write_short_into_long_string(char* ziel, char* quelle)
