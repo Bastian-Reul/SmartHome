@@ -3,13 +3,13 @@
 #include <Ethernet.h>
 #include <PubSubClient.h>
 #include "CAN.h"
-#include "src/account_Labor.h"
+//#include "src/account_Labor.h"
 #include "Hausbus.h"
 #include "Pin_ATMEGA328.h"
 #include "Aktor.h"
 #include "../ArduinoCore/include/core/Arduino.h"
 #include <stdio.h> 
-#include "src/account_Labor.h"
+#include "src/account_Home.h"
 
 uint32_t CAN_Buffer[20];
 uint32_t CAN_UID_List[3] = {
@@ -50,12 +50,12 @@ char testinput[] =	{"\"_Topic\":\"Test/objects/Aktor1\",\"_status\":false,\"_sch
 			// Update these with values suitable for your network.
 			byte mac[]    = {  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 			//byte ip[] = {HUB_IP};
-			IPAddress ip_WHS(HUB_IP);
+		//	IPAddress ip_WHS(HUB_IP);
 			IPAddress server_WHS(MQTT_SERVERIP);
-			IPAddress gateway_WHS(Gateway_Labor);
+		/*	IPAddress gateway_WHS(Gateway_Labor);
 			IPAddress subnet_WHS(Subnet_Labor);
 			IPAddress DNS_Server_WHS(DNS_Server_Labor);
-			
+			*/
 			//IPAddress DNSipServer(DNS_ServerBuero);
 			//IPAddress server(192, 168, 0, 2);
 			char mqtt_user[] = USERNAME;
@@ -135,8 +135,8 @@ void setup()
 	//Serial.println(MQTT_VERSION);
 			
 	//Unbedingt diese Reihenfolge beachten, DNS Server und IP Adresse sind vertauscht!!!!!!!
-	Ethernet.begin(mac, DNS_Server_WHS, ip_WHS, gateway_WHS, subnet_WHS);
-	//Ethernet.begin(mac); //IP Adresse per DHCP holen klappt bei Philipp
+	//Ethernet.begin(mac, DNS_Server_WHS, ip_WHS, gateway_WHS, subnet_WHS);
+	Ethernet.begin(mac); //IP Adresse per DHCP holen klappt bei Philipp
 	Serial.println("Ethernet wurde gestartet");
 
 	// Allow the hardware to sort itself out
