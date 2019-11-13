@@ -18,10 +18,8 @@
 // MQTT_VERSION : Pick the version
 //#define MQTT_VERSION MQTT_VERSION_3_1
 #ifndef MQTT_VERSION
-//09.07.2019
-//wurde von mit geändert, der mosquitto Broker auf dem ubuntu Server benutzt Version 3.1
-//#define MQTT_VERSION MQTT_VERSION_3_1_1
-#define MQTT_VERSION MQTT_VERSION_3_1
+#define MQTT_VERSION MQTT_VERSION_3_1_1
+//#define MQTT_VERSION MQTT_VERSION_3_1
 #endif
 
 // MQTT_MAX_PACKET_SIZE : Maximum packet size

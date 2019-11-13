@@ -3,13 +3,13 @@
 #include <Ethernet.h>
 #include <PubSubClient.h>
 #include "CAN.h"
-//#include "src/account_Labor.h"
+#include "src/account_Labor.h"
 #include "Hausbus.h"
 #include "Pin_ATMEGA328.h"
 #include "Aktor.h"
 #include "../ArduinoCore/include/core/Arduino.h"
 #include <stdio.h> 
-#include "src/account_Home.h"
+//#include "src/account_Home.h"
 
 uint32_t CAN_Buffer[20];
 uint32_t CAN_UID_List[3] = {
@@ -50,16 +50,18 @@ char testinput[] =	{"\"_Topic\":\"Test/objects/Aktor1\",\"_status\":false,\"_sch
 			// Update these with values suitable for your network.
 			byte mac[]    = {  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 			//byte ip[] = {HUB_IP};
-		//	IPAddress ip_WHS(HUB_IP);
-			IPAddress server_WHS(MQTT_SERVERIP);
-		/*	IPAddress gateway_WHS(Gateway_Labor);
+			IPAddress ip_WHS(HUB_IP);
+			IPAddress google = { 64, 233, 187, 99 }; // Google
+			//IPAddress server_WHS(MQTT_SERVERIP);
+			const char MQTT_SERVER_Adress[]  = MQTT_SERVER_Adress_Home;
+			IPAddress gateway_WHS(Gateway_Labor);
 			IPAddress subnet_WHS(Subnet_Labor);
 			IPAddress DNS_Server_WHS(DNS_Server_Labor);
-			*/
+			
 			//IPAddress DNSipServer(DNS_ServerBuero);
 			//IPAddress server(192, 168, 0, 2);
-			char mqtt_user[] = USERNAME;
-			char mqtt_password[] = PASSWORD;
+			const char mqtt_user[] = USERNAME;
+			const char mqtt_password[] = PASSWORD;
 			
 
 void callback(char* topic, byte* payload, unsigned int length) {
@@ -97,7 +99,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 	Serial.println("...warte...");
 
 }
-
+EthernetClient ConnectionTestClient;
 EthernetClient ethClient;
 PubSubClient mqttClient(ethClient);
 
@@ -106,7 +108,7 @@ void reconnect() {
 	while (!mqttClient.connected()) {
 		Serial.print("Attempting MQTT connection...");
 		// Attempt to connect
-		if (mqttClient.connect("8e69f9bf0bac", mqtt_user, mqtt_password)) {
+		if (mqttClient.connect("Arduino", mqtt_user, mqtt_password)) {
 			Serial.println("connected");
 			// Once connected, publish an announcement...
 			mqttClient.publish("outTopic","toggle");
@@ -126,31 +128,48 @@ void reconnect() {
 void setup()
 {
 //	pinMode(RELAIS_PIN, OUTPUT);
-	Serial.begin(9600);
+	Serial.begin(57600);
 	Serial.println("Arduino started");
 		
-	mqttClient.setServer(server_WHS, 1883);
+		
+		//  void begin(uint8_t *mac_address, IPAddress local_ip, IPAddress dns_server, IPAddress gateway, IPAddress subnet);
+		//Unbedingt diese Reihenfolge beachten, DNS Server und IP Adresse sind vertauscht!!!!!!!
+		//Ethernet.begin(mac, DNS_Server_WHS, ip_WHS, gateway_WHS, subnet_WHS);
+		Ethernet.begin(mac, ip_WHS, DNS_Server_WHS, gateway_WHS, subnet_WHS);
+		//Ethernet.begin(mac); //IP Adresse per DHCP holen klappt bei Philipp
+		Serial.println("Ethernet wurde gestartet");
+		
+		ConnectionTestClient.connect(google, 80);
+		delay(1000);
+		  if (ConnectionTestClient.connected()) {
+			  Serial.println("connected");
+			  ConnectionTestClient.println("GET /search?q=arduino HTTP/1.0");
+			  ConnectionTestClient.println();
+			  } else {
+			  Serial.println("connection failed");
+		  }
+		  ConnectionTestClient.stop();
+		
+	//mqttClient.setServer(server_WHS, 1883);
+	mqttClient.setServer(MQTT_SERVER_Adress, 1883);
 	mqttClient.setCallback(callback);
 	Serial.println("MQTT initialisiert");
 	//Serial.println(MQTT_VERSION);
 			
-	//Unbedingt diese Reihenfolge beachten, DNS Server und IP Adresse sind vertauscht!!!!!!!
-	//Ethernet.begin(mac, DNS_Server_WHS, ip_WHS, gateway_WHS, subnet_WHS);
-	Ethernet.begin(mac); //IP Adresse per DHCP holen klappt bei Philipp
-	Serial.println("Ethernet wurde gestartet");
+
 
 	// Allow the hardware to sort itself out
-	delay(1500);
+	delay(5000);
 		Serial.print("IP Adresse Arduino: ");
 		Serial.println(Ethernet.localIP());
 		Serial.print("Gateway: ");
 		Serial.println(Ethernet.gatewayIP());
 		
 	  // start the CAN bus at 500 kbps
-	  if (!CAN.begin(500E3)) {
+	/*  if (!CAN.begin(500E3)) {
 		  Serial.println("Starting CAN failed!");
 		  while (1);
-	  }
+	  }*/
 }
 
 void loop()
