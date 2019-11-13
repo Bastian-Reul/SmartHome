@@ -22,6 +22,8 @@
 #include "Ethernet.h"
 #include "Dns.h"
 #include "utility/w5100.h"
+#include "EthernetClient.h"
+#include "socket.h"
 
 int EthernetClient::connect(const char * host, uint16_t port)
 {

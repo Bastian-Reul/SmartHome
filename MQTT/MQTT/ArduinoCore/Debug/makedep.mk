@@ -66,8 +66,6 @@ src\libraries\Ethernet\src\EthernetServer.cpp
 
 src\libraries\Ethernet\src\EthernetUdp.cpp
 
-src\libraries\Ethernet\src\utility\socket.cpp
-
 src\libraries\Ethernet\src\utility\w5100.cpp
 
 src\libraries\SPI\src\SPI.cpp
