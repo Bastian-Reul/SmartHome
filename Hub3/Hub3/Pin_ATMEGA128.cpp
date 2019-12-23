@@ -1,12 +1,9 @@
 ﻿/*
 selbst erstellte Library
-zur Ansteuerung eines Pins an einem ATMEGA328
-Version 0.1		04.11.2018		Erstellung der Klasse
-Version 1.0		05.11.2018		Fertigstellung der rudimentären Funktionen der Klasse Pin
+zur Ansteuerung eines Pins an einem ATMEGA128
+Version 0.1		23.12.2019		Kopieren der Klasse aus ATMEGA328 und anpassen auf neue Ports des ATMEGA128
 
 
-Notes:
-Der Atmega 328 hat keinen Port A, an Port C fehlt Pin 7 bei der DIP (Arduino UNO) Version des ICs!!!
 */
 #include "Pin_ATMEGA128.h"
 #include <stdint-gcc.h>
