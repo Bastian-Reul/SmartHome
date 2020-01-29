@@ -3,6 +3,7 @@
 selbst erstellte Library
 zur Ansteuerung eines Pins an einem ATMEGA128
 Version 0.1		23.12.2019		Kopieren der Klasse aus ATMEGA328 und anpassen auf neue Ports des ATMEGA128
+				29.01.2020		Feritg mit anpassen der neuen Ports
 */
 
 #ifndef PIN_H

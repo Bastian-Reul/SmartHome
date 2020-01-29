@@ -2,6 +2,7 @@
 selbst erstellte Library
 zur Ansteuerung eines Pins an einem ATMEGA128
 Version 0.1		23.12.2019		Kopieren der Klasse aus ATMEGA328 und anpassen auf neue Ports des ATMEGA128
+				29.01.2020		Feritg mit anpassen der neuen Ports
 
 
 */
@@ -841,6 +842,79 @@ void Pin::initialisierePin()
 
 void Pin::setze_Status(bool Status)
 {
+		if (private_Port == 'B')
+		{
+			switch(private_Nummer_Pin)
+			{
+				case 0:	if (Status == true)
+				{ PORTA |= (1<< PINA0);
+				merke_status(true);}
+				else
+				{PORTA &= ~(1<<PINA0);
+				merke_status(false);}
+				break;
+			
+				case 1:	if (Status == true)
+				{ PORTA |= (1<< PINA1);
+				merke_status(true);}
+				else
+				{PORTA &= ~(1<<PINA1);
+				merke_status(false);}
+				break;
+			
+				case 2:	if (Status == true)
+				{ PORTA |= (1<< PINA2);
+				merke_status(true);}
+				else
+				{PORTA &= ~(1<<PINA2);
+				merke_status(false);}
+				break;
+			
+				case 3:	if (Status == true)
+				{ PORTA |= (1<< PINA3);
+				merke_status(true);}
+				else
+				{PORTA &= ~(1<<PINA3);
+				merke_status(false);}
+				break;
+			
+				case 4:	if (Status == true)
+				{ PORTA |= (1<< PINA4);
+				merke_status(true);}
+				else
+				{PORTA &= ~(1<<PINA4);
+				merke_status(false);}
+				break;
+			
+				case 5:	if (Status == true)
+				{ PORTA |= (1<< PINA5);
+				merke_status(true);}
+				else
+				{PORTA &= ~(1<<PINA5);
+				merke_status(false);}
+				break;
+			
+				case 6:	if (Status == true)
+				{ PORTA |= (1<< PINA6);
+				merke_status(true);}
+				else
+				{PORTA &= ~(1<<PINA6);
+				merke_status(false);}
+				break;
+			
+				case 7:	if (Status == true)
+				{ PORTA |= (1<< PINA7);
+				merke_status(true);}
+				else
+				{PORTA &= ~(1<<PINA7);
+				merke_status(false);}
+				break;
+			
+				default: //# warning "The choosen pin number is not valid. Only 0-7 are allowed on Port B"
+				break;
+			
+			}
+		}
 
 		if (private_Port == 'B')
 		{
